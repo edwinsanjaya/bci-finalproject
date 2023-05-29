@@ -1,30 +1,51 @@
-# bci-finalproject
+# BCI - Final Project
 
 This work is prepared to meet the requirements of the course 11120ISA557300: Brain Computer Interfaces: Fundamentals and Application, instructed by Prof. Chun-Hsiang Chuang
 
-_Table of contents_
+## Authors
 
-1. [Introduction](#introduction)
-2. [Dataset](#dataset)
-3. [Model Framework](#model-framework)
-4. [Validation](#validation)
-5. [Usage](#usage)
-6. [Results](#results)
-7. [References](#references)
+- Didier Salazar 利葉 111065427
+- Edwin Sanjaya 陳潤烈 110065710
+- Gabriela Herrera 凱碧 111065421
 
-## Video HERE
+## Table of contents
+
+- [Introduction](#introduction)
+- [Demo Video](#demo-video)
+- [Dataset](#dataset)
+- [Model Framework](#model-framework)
+- [Validation](#validation)
+- [Usage](#usage)
+- [Results](#results)
+- [References](#references)
 
 ## Introduction
 
-Provide an overview of your BCI system, explaining its purpose, functionality, and key features.
+Brain-computer interfaces (BCIs) are systems that use EEG (Electroencephalography) data to enable users to interact with external devices and varied technologies. The user's neural activity can be analyzed under different conditions and stimuli to find correlations and identify related neural signals that can be translated to instructions. Recent advancements in eye tracking technologies and research on integrating gaze information with blinking patterns have shown promise in enhancing users' ability to intuitively select options when controlling the device or technology. In line with these advancements, we propose a project to develop a system that analyzes neural activity related to the voluntary blinking, which can be utilized as a mechanism in interaction with computers.
+
+This project focuses on leveraging the brain-computer interface technology to develop a system that can consistently identify voluntarily blinking with the aim of enhancing accessibility by providing an alternative method for option selection. To achieve this our main objectives are:
+
+- Identify the features in the EEG signal which can be reliable for eye blinking classification.
+- Develop the pre-processing framework to enhance the signal quality of the EEG dataset while eliminating the noise.
+- Develop a machine learning model to classify different types of eye blinking.
+- Evaluating and fine-tuning the accuracy of our system in classifying the different neural signals into voluntary blinking and involuntary blinking.
+
+## Demo Video
+
+_video here_
 
 ## Dataset
 
-### Experimental Design/paradigm
+For the purpose of this project, we utilized the dataset developed by Suguru Kanoga, Masaki Nakanishi, and Yasue Mitsukura as documented in their research paper titled "Assessing the effects of voluntary and involuntary eyeblinks in independent components of electroencephalogram" [1](#references). To acquire the dataset, we communicated with the authors and obtained the dataset "EyeblinkDataset" directly from them via email.
 
-### Collection Procedure
+The data was collected from 14 channels (Fp1, Fp2, F3, F4, T3, C3, Cz, C4, T4, P3, Pz, P4, O1, and O2) according to the 10–20 system.
+![Electrodes 10–20 system](https://upload.wikimedia.org/wikipedia/commons/7/70/21_electrodes_of_International_10-20_system_for_EEG.svg)
 
-### hardware and software used, data size, number of channels, sampling rate, the website from which your data was collected owner, source
+The dataset corresponds to twenty subjects (14 males and 6 females, mean age: 22.75±1.45 years, 14 right and 6 left eye dominants). As detailed in the paper[1](#references), the signals were acquired using active electrodes made of sintered Ag/Ag–Cl material (manufactured by g.tec Medical Engineering GmbH, Austria) were used, with their metallic tips securely attached to the scalp. Two surface Ag/Ag–Cl electrodes (Blue Sensor P, Ambu Corp., Denmark) were placed at the superior and inferior orbital rims of the left eye to record the vertical EOG signal. The left mastoid and Fz served as the reference and ground electrodes, respectively. To ensure accurate signal capture, the EEG and EOG data were band-pass filtered from 0.5 Hz to 60 Hz using a Butterworth filter. The signals were then digitized at a sampling rate of 256 Hz using the g.USBamp system. The first 5 seconds of recorded data were discarded as they were deemed unreliable. To reduce skin resistance and ensure good electrode-skin contact, all electrodes were coated with an electrolyte called g.GAMMAgel.
+
+The experiments to collect the data are specified in the paper and a usefull diagram has also been included here. For voluntary eyeblinks, an audio stimulus was used, and participants were instructed to blink within 1 second of hearing the beep sound while focusing on a fixation point. The study comprised three sessions with 20 trials each, separated by rest periods. The sound presentation intervals were selected to capture sustained effects on EEG signals while minimizing interference. In the case of involuntary eyeblinks, three different sounds ("A," "S," and "D") at specific frequencies and volume were employed. Participants placed their left fingertips on corresponding keyboard keys, responding to the presented sound. Feedback and performance rates were provided after 20 trials, aiming for a 90% accuracy rate. Natural blinking was allowed, and three sessions were conducted.
+
+![Diagram of a trial for voluntary and involuntary eyeblink](https://ars.els-cdn.com/content/image/1-s2.0-S0925231216001569-gr1.jpg)
 
 ### Quality evaluation
 
@@ -35,19 +56,19 @@ Provide an overview of your BCI system, explaining its purpose, functionality, a
 Apply ICA to your EEG data then use ICLabel to automatically label the ICs and estimate the probability of each IC being either non-brain artifactual or Brain ICs. Investigate and analyze the change in the number of recognized ICs for the following EEG datasets:
 
 1. Raw EEG data
-   | EEG (? Channels & ? Datasets) | bandpass filter | ASR | Brain | Muscle | Eye | Heart | Line Noise | Channel Noise | Other |
+   | EEG (14 Channels & Eyeblink Dataset) | bandpass filter | ASR | Brain | Muscle | Eye | Heart | Line Noise | Channel Noise | Other |
    | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
    | raw | | | | | | | | | |
    | filtered | | | | | | | | | |
    | ASR-corrected | | | | | | | | | |
 2. Filtered EEG data
-   | EEG (? Channels & ? Datasets) | bandpass filter | ASR | Brain | Muscle | Eye | Heart | Line Noise | Channel Noise | Other |
+   | EEG (14 Channels & Eyeblink Dataset) | bandpass filter | ASR | Brain | Muscle | Eye | Heart | Line Noise | Channel Noise | Other |
    | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
    | raw | | | | | | | | | |
    | filtered | | | | | | | | | |
    | ASR-corrected | | | | | | | | | |
 3. EEG data corrected using ASR.
-   | EEG (? Channels & ? Datasets) | bandpass filter | ASR | Brain | Muscle | Eye | Heart | Line Noise | Channel Noise | Other |
+   | EEG (14 Channels & Eyeblink Dataset) | bandpass filter | ASR | Brain | Muscle | Eye | Heart | Line Noise | Channel Noise | Other |
    | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
    | raw | | | | | | | | | |
    | filtered | | | | | | | | | |
@@ -55,25 +76,50 @@ Apply ICA to your EEG data then use ICLabel to automatically label the ICs and e
 
 ## Model Framework
 
-Outline the architecture and components of your BCI system. This includes the input/output mechanisms, signal preprocessing techniques, data segmentation methods, artifact removal strategies, feature extraction approaches, machine learning models utilized, and any other relevant components.
+_Outline the architecture and components of your BCI system. This includes the input/output mechanisms, signal preprocessing techniques, data segmentation methods, artifact removal strategies, feature extraction approaches, machine learning models utilized, and any other relevant components._
+
+Taking into account that the dataset has already been labeled, supervised learning was used to
+create a model that can classify voluntary and involuntary blinking. We explored various
+models of supervised learning, specifically: Support Vector Machine (SVM), Random Forest, Recurrent
+Neural Network (RNN), and Linear Discriminant Analysis (LDA). This approach provided valuable insights
+since employing multiple models facilitated a comparison of their performance and helped identify the
+model that best suited the data.
+Our system framework is as follow:
+
+1. Preprocessing of the data: noise was filtered out and the data was be organized homogeneously
+   across all subjects using Matlab.
+2. Feature engineering: the exploration of different features, such as peak amplitude, duration, blink frequency, inter-blink
+   interval or time-frequency features, was conducted.Out of the features extracted, the most informative ones were used to reduce the
+   dimensionality of the data and improve the performance of the machine learning algorithms.
+3. Machine learning model development: the preprocessed data and selected features were used to
+   generate the supervised learning models for Support Vector Machine (SVM), Random Forest,
+   Recurrent Neural Network (RNN), and Linear Discriminant Analysis (LDA).
+4. Evaluation: the dataset was divided into a training set and a validation set, then each model was trained on the training set and their performance was assessed using the validation set. After obtaining each model's performance, their results were compared and the most effective model was selected.
+
+![Framework](/imgs/framework.png)
 
 ## Validation
 
-Describe the methods used to validate the effectiveness and reliability of your BCI system.
+_Describe the methods used to validate the effectiveness and reliability of your BCI system._
 
 ## Usage
 
-Describe the usage of their BCI model's code. Explain the required environment and dependencies needed to run the code. Describe any configurable options or parameters within the code. Provide instructions on how to execute the code.
+_Describe the usage of their BCI model's code._
+
+### Environment
+
+_Explain the required environment and dependencies needed to run the code. Describe any configurable options or parameters within the code._
+
+### Configuration
+
+### Excution
+
+_Provide instructions on how to execute the code._
 
 ## Results
 
-Present a detailed comparison and analysis of your BCI system's performance against the competing methods. Include metrics such as accuracy, precision, recall, F1-score, or any other relevant evaluation metrics. Compare and contrast your BCI system with existing competing methods. Highlight the advantages and unique aspects of your system.
+_Present a detailed comparison and analysis of your BCI system's performance against the competing methods. Include metrics such as accuracy, precision, recall, F1-score, or any other relevant evaluation metrics. Compare and contrast your BCI system with existing competing methods. Highlight the advantages and unique aspects of your system._
 
 ## References
 
-- Kanoga, S., Nakanishi, M., & Mitsukura, Y. (2016). Assessing the effects of voluntary and involuntary eyeblinks in independent components of electroencephalogram. Neurocomputing, 193, 20-32.
-- Agarwal, Mohit & Sivakumar, Raghupathy. (2019). Blink: A Fully Automated Unsupervised Algorithm for Eye-Blink Detection in EEG Signals. 1113-1121. 10.1109/ALLERTON.2019.8919795.
-- Agarwal, Mohit & Sivakumar, R.. (2020). Charge for a whole day: Extending Battery Life for BCI Wearables using a Lightweight Wake-Up Command. 1-14. 10.1145/3313831.3376738.
-- Gupta, Ekansh & Agarwal, Mohit & Sivakumar, R.. (2020). Blink to Get In: Biometric Authentication for Mobile Devices using EEG Signals. 1-6. 10.1109/ICC40277.2020.9148741.
-- Hwang, H., Lim, J., Jung, Y., Choi, H., Lee, S.W., & Im, C. (2012). Development of an SSVEP-based BCI spelling system adopting a QWERTY-style LED keyboard. Journal of Neuroscience Methods, 208, 59-65.
-- Meena, K., Kumar, M., & Jangra, M. (2020). Controlling Mouse Motions Using Eye Tracking Using Computer Vision. 2020 4th International Conference on Intelligent Computing and Control Systems (ICICCS), 1001-1005.
+1. Kanoga, S., Nakanishi, M., & Mitsukura, Y. (2016). Assessing the effects of voluntary and involuntary eyeblinks in independent components of electroencephalogram. Neurocomputing, 193, 20-32. [https://doi.org/10.1016/j.neucom.2016.01.057](https://doi.org/10.1016/j.neucom.2016.01.057)
