@@ -1,3 +1,5 @@
+eeglab;
+
 % Create a copy
 newEpochs = Epochs;
 
