@@ -1,11 +1,10 @@
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
-
-from sklearn.metrics import accuracy_score
 
 def model_training(input_x, input_y, model, test_size=0.2):
     x_train, x_test, y_train, y_test = train_test_split(input_x, input_y, test_size, random_state=42)
@@ -14,3 +13,15 @@ def model_training(input_x, input_y, model, test_size=0.2):
     y_test_predict = model.predict(x_test)
     train_acc = accuracy_score(y_train, y_train_predict)
     test_acc = accuracy_score(y_test, y_test_predict)
+
+    print(f'Train acc: {train_acc}  Test acc:{test_acc}')
+    cm_train = confusion_matrix(y_true=y_train, y_pred=y_train_predict)
+    print(cm_train)
+    print(classification_report(y_true=y_train, y_pred=y_train_predict))
+
+    print(f'\nTest acc: {train_acc}  Test acc:{test_acc}')
+    cm_test = confusion_matrix(y_true=y_test, y_pred=y_test_predict)
+    print(cm_test)
+    print(classification_report(y_true=y_test, y_pred=y_test_predict))
+
+    return model
