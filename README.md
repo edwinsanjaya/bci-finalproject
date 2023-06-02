@@ -57,19 +57,24 @@ The dataset provide a lot of contribution in the BCI research with 27 citations,
 - And other [citations](https://scholar.google.com/scholar?oi=bibs&cites=5737901810583805697) as well
 
 In addition, the main author of the paper has a high credibility:
+
 - Ph.D. degree in Engineering, Graduate School of Integrated Design Engineering, Keio University, Japan
 - 7+ years of research experience
 - Google Scholar Page: https://scholar.google.com/citations?user=69k7XzYAAAAJ
 
 #### Analyzing the hidden independent components within EEG using ICA with ICLabel
 
-Apply ICA to your EEG data then use ICLabel to automatically label the ICs and estimate the probability of each IC being either non-brain artifactual or Brain ICs. Investigate and analyze the change in the number of recognized ICs for the following EEG datasets:
+The dataset was created by the original authors of the paper through a series of processing steps. They initially filtered the recorded EOG signals using a low-pass filter (Butterworth, cutoff frequency: 8.0 Hz) to reduce cerebral activities. Then, they detected the first positive peaks of blinks in the filtered EOG signals using a hard threshold (threshold value: 50 μV) and visually inspected these peaks to confirm their validity. The authors then segmented the eyeblink features and vertical EOG signals into 4-second epochs based on the point of maximum amplitude in the EOG data.
+
+During our analysis, we applied Independent Component Analysis (ICA) to the EEG epoch data and used ICLabel for automatic labeling. It's important to note that the components we obtained were specifically related to brain and eye activities, reflecting the processing steps conducted by the original authors. So we wish to clarify, when we mention "raw" data, we are referring to the data that includes the processing performed by the original authors, without any additional processing from our side.
+
+We compared the number of identified ICs in the dataset obtained from the "raw" data provided by the authors, as well as the dataset after applying bandpass filtering and Artifact Subspace Reconstruction (ASR) correction. We observed slight differences between these datasets. To gain further insights into the changes within the datasets, we also examined the probabilities shown by the ICA, which were influenced by our additional processing steps of bandpass filtering and ASR correction.
 
 | EEG (14 Channels & Eyeblink Dataset) | bandpass filter | ASR | Brain | Muscle | Eye | Heart | Line Noise | Channel Noise | Other |
-| --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| raw | | | | | | | | | |
-| filtered | | | | | | | | | |
-| ASR-corrected | | | | | | | | | |
+| ------------------------------------ | :-------------: | :-: | :---: | :----: | :-: | :---: | :--------: | :-----------: | :---: |
+| raw                                  |                 |     |       |   0    |     |   0   |     0      |       0       |   0   |
+| filtered                             |        v        |     |       |   0    |     |   0   |     0      |       0       |   0   |
+| ASR-corrected                        |        v        |  v  |       |   0    |     |   0   |     0      |       0       |   0   |
 
 ## Model Framework
 
