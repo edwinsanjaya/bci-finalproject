@@ -13,15 +13,18 @@ newEpochs.AllEpochs.Involuntary(1,:,:) = [];
 newEpochs.AllEpochs.Involuntary = permute(newEpochs.AllEpochs.Involuntary, [1 3 2]);
 
 blinks_data=newEpochs.AllEpochs;
+merged_data = cat(3, blinks_data.Voluntary, blinks_data.Involuntary);
 
 % Assume blinks_data.Voluntary is your input array
-original_size = size(blinks_data.Voluntary);
+original_size = size(merged_data);
 
 warning('off', 'all');
 % Reshape the array
 reshaped_array_vol = reshape(blinks_data.Voluntary, [original_size(1), prod(original_size(2:end))]);
+bandpass_voluntary = zeros(size(reshaped_array_vol, 1), size(reshaped_array_vol, 2));
 for k = 1:size(reshaped_array_vol, 1)
-    bandpass_voluntary = bandpass(reshaped_array_vol,[1 50], 256);
+    bandpass_voluntary(k,:) = bandpass(reshaped_array_vol(k,:),[1 50], 256, ImpulseResponse="iir", Steepness=0.95);
+end
 % Reshape back to the original size
 bandpass_voluntary = reshape(bandpass_voluntary, original_size);
 
@@ -30,31 +33,34 @@ original_size2 = size(blinks_data.Involuntary);
 
 % Reshape the array
 reshaped_array_invol = reshape(blinks_data.Involuntary, [original_size2(1), prod(original_size2(2:end))]);
-bandpass_involuntary = bandpass(reshaped_array_invol,[1 50], 256);
+bandpass_involuntary = zeros(size(reshaped_array_invol, 1), size(reshaped_array_invol, 2));
+for k = 1:size(reshaped_array_invol, 1)
+    bandpass_involuntary(k,:) = bandpass(reshaped_array_invol(k,:),[1 50], 256, ImpulseResponse="iir", Steepness=0.95);
+end
 % Reshape back to the original size
 bandpass_involuntary = reshape(bandpass_involuntary, original_size2);
 
 warning('on', 'all');
 
-warning('off', 'all');
-% Preallocate bandpass_voluntary for speed
-bandpass_voluntary = zeros(size(blinks_data.Voluntary, 1), size(blinks_data.Voluntary, 2), size(blinks_data.Voluntary, 3));
+% warning('off', 'all');
+% % Preallocate bandpass_voluntary for speed
+% bandpass_voluntary = zeros(size(blinks_data.Voluntary, 1), size(blinks_data.Voluntary, 2), size(blinks_data.Voluntary, 3));
+% 
+% % Preallocate bandpass_involuntary for speed
+% bandpass_involuntary = zeros(size(blinks_data.Involuntary, 1), size(blinks_data.Involuntary, 2), size(blinks_data.Involuntary, 3));
+% 
+% for k = 1:size(blinks_data.Voluntary, 3)
+%     bandpass_voluntary(:,:,k) = bandpass(blinks_data.Voluntary(:,:,k),[1 50], 256, ImpulseResponse="iir", Steepness=0.95);
+%     %bandpass_voluntary(:,:,k) = bandpass(blinks_data.Voluntary(:,:,k),[1 50], 256); 
+% end
+% 
+% for k = 1:size(blinks_data.Involuntary, 3)
+%     bandpass_involuntary(:,:,k) = bandpass(blinks_data.Involuntary(:,:,k),[1 50], 256, ImpulseResponse="iir", Steepness=0.95);
+% end
+% 
+% warning('on', 'all');
 
-% Preallocate bandpass_involuntary for speed
-bandpass_involuntary = zeros(size(blinks_data.Involuntary, 1), size(blinks_data.Involuntary, 2), size(blinks_data.Involuntary, 3));
-
-for k = 1:size(blinks_data.Voluntary, 3)
-    bandpass_voluntary(:,:,k) = bandpass(blinks_data.Voluntary(:,:,k),[1 50], 256, ImpulseResponse="iir", Steepness=0.95);
-    %bandpass_voluntary(:,:,k) = bandpass(blinks_data.Voluntary(:,:,k),[1 50], 256); 
-end
-
-for k = 1:size(blinks_data.Involuntary, 3)
-    bandpass_involuntary(:,:,k) = bandpass(blinks_data.Involuntary(:,:,k),[1 50], 256, ImpulseResponse="iir", Steepness=0.95);
-end
-
-warning('on', 'all');
-
-samples=size(bandpass_voluntary, 3);
+samples=size(merged_data, 3);
 sampling_rate=256; %Sample rate of the dataset of voluntary blinking
 % Calculate time duration
 timeDuration = (samples - 1) / sampling_rate; % Subtracting 1 to start from 0
@@ -67,7 +73,7 @@ time = linspace(0, timeDuration, samples);
 EEG_voluntary = eeg_emptyset;
 
 % Add your data
-EEG_voluntary.data = bandpass_voluntary;
+EEG_voluntary.data = blinks_data.Voluntary;
 
 % Update dimensions
 EEG_voluntary.nbchan = size(EEG_voluntary.data, 1); % Number of channels

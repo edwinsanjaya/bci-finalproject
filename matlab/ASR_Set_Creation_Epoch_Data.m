@@ -13,33 +13,23 @@ newEpochs.AllEpochs.Involuntary(1,:,:) = [];
 newEpochs.AllEpochs.Involuntary = permute(newEpochs.AllEpochs.Involuntary, [1 3 2]);
 
 blinks_data=newEpochs.AllEpochs;
+merged_data = cat(3, blinks_data.Voluntary, blinks_data.Involuntary);
 
-% Assume blinks_data.Voluntary is your input array
-original_size = size(blinks_data.Voluntary);
+% % merged_data is the input array
+original_size = size(merged_data);
 
 warning('off', 'all');
 % Reshape the array
-reshaped_array_vol = reshape(blinks_data.Voluntary, [original_size(1), prod(original_size(2:end))]);
-bandpass_voluntary = zeros(size(reshaped_array_vol, 1), size(reshaped_array_vol, 2));
-for k = 1:size(reshaped_array_vol, 1)
-    bandpass_voluntary(k,:) = bandpass(reshaped_array_vol(k,:),[1 50], 256, ImpulseResponse="iir", Steepness=0.95);
+reshaped_array_merged = reshape(merged_data, [original_size(1), prod(original_size(2:end))]);
+bandpass_merged = zeros(size(reshaped_array_merged, 1), size(reshaped_array_merged, 2));
+for k = 1:size(reshaped_array_merged, 1)
+    bandpass_merged(k,:) = bandpass(reshaped_array_merged(k,:),[1 50], 256, ImpulseResponse="iir", Steepness=0.95);
 end
 % Reshape back to the original size
-bandpass_voluntary = reshape(bandpass_voluntary, original_size);
-
-% Assume blinks_data.Voluntary is your input array
-original_size2 = size(blinks_data.Involuntary);
-
-% Reshape the array
-reshaped_array_invol = reshape(blinks_data.Involuntary, [original_size2(1), prod(original_size2(2:end))]);
-bandpass_involuntary = zeros(size(reshaped_array_invol, 1), size(reshaped_array_invol, 2));
-for k = 1:size(reshaped_array_invol, 1)
-    bandpass_involuntary(k,:) = bandpass(reshaped_array_invol(k,:),[1 50], 256, ImpulseResponse="iir", Steepness=0.95);
-end
-% Reshape back to the original size
-bandpass_involuntary = reshape(bandpass_involuntary, original_size2);
+bandpass_merged = reshape(bandpass_merged, original_size);
 
 warning('on', 'all');
+
 
 % warning('off', 'all');
 % % Preallocate bandpass_voluntary for speed
@@ -59,7 +49,7 @@ warning('on', 'all');
 % 
 % warning('on', 'all');
 
-samples=size(bandpass_voluntary, 3);
+samples=size(merged_data, 3);
 sampling_rate=256; %Sample rate of the dataset of voluntary blinking
 % Calculate time duration
 timeDuration = (samples - 1) / sampling_rate; % Subtracting 1 to start from 0
@@ -68,55 +58,31 @@ time = linspace(0, timeDuration, samples);
 
 % Assuming 'newEpochs' is your modified data
 
-% Initialize EEGLAB structure for 'Voluntary'
-EEG_voluntary = eeg_emptyset;
+% Initialize EEGLAB structure for the merged data
+EEG_merged = eeg_emptyset;
 
 % Add your data
-EEG_voluntary.data = bandpass_voluntary;
+EEG_merged.data = merged_data;
 
 % Update dimensions
-EEG_voluntary.nbchan = size(EEG_voluntary.data, 1); % Number of channels
-EEG_voluntary.pnts = size(EEG_voluntary.data, 2); % Number of points
-EEG_voluntary.trials = size(EEG_voluntary.data, 3); % Number of trials
-EEG_voluntary.srate = sampling_rate;
-EEG_voluntary.times = time; %Time 
+EEG_merged.nbchan = size(EEG_merged.data, 1); % Number of channels
+EEG_merged.pnts = size(EEG_merged.data, 2); % Number of points
+EEG_merged.trials = size(EEG_merged.data, 3); % Number of trials
+EEG_merged.srate = sampling_rate;
+EEG_merged.times = time; %Time 
 % Set the label
-EEG_voluntary(1).labels = 'Voluntary Data';
+EEG_merged(1).labels = 'Voluntary Data';
 % Define the channel labels
 chan_labels = {'Fp1', 'Fp2', 'F3', 'F4', 'T3', 'C3', 'Cz', 'C4', 'T4', 'P3', 'Pz', 'P4', 'O1', 'O2'};
 % Assign these channel labels to your data
 for i = 1:length(chan_labels)
-    EEG_voluntary.chanlocs(i).labels = chan_labels{i};
+    EEG_merged.chanlocs(i).labels = chan_labels{i};
 end
 % Load the standard channel location file
-EEG_voluntary = pop_chanedit(EEG_voluntary, 'lookup','standard-10-5-cap385.elp');
+EEG_merged = pop_chanedit(EEG_merged, 'lookup','standard-10-5-cap385.elp');
 
 % Save the cleaned data as a .set file
-outputFilenameSet = 'jap_voluntary_data.set';
-pop_saveset(EEG_voluntary, 'filename', outputFilenameSet, 'filepath', '');
+outputFilenameSet = 'jap_merged_data.set';
+pop_saveset(EEG_merged, 'filename', outputFilenameSet, 'filepath', '');
 
-
-% Repeat the same steps for 'Involuntary'
-EEG_involuntary = eeg_emptyset;
-EEG_involuntary.data = bandpass_involuntary;
-
-EEG_involuntary.nbchan = size(EEG_involuntary.data, 1);
-EEG_involuntary.pnts = size(EEG_involuntary.data, 2);
-EEG_involuntary.trials = size(EEG_involuntary.data, 3);
-EEG_involuntary.srate = sampling_rate;
-EEG_involuntary.times = time; %Time 
-% Set the label
-EEG_involuntary(1).labels = 'Involuntary Data';
-% Define the channel labels
-chan_labels = {'Fp1', 'Fp2', 'F3', 'F4', 'T3', 'C3', 'Cz', 'C4', 'T4', 'P3', 'Pz', 'P4', 'O1', 'O2'};
-% Assign these channel labels to your data
-for i = 1:length(chan_labels)
-    EEG_involuntary.chanlocs(i).labels = chan_labels{i};
-end
-% Load the standard channel location file
-EEG_involuntary = pop_chanedit(EEG_involuntary, 'lookup','standard-10-5-cap385.elp');
-
-% Save the cleaned data as a .set file
-outputFilenameSet = 'jap_involuntary_data.set';
-pop_saveset(EEG_involuntary, 'filename', outputFilenameSet, 'filepath', '');
 
