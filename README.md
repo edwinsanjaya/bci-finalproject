@@ -70,11 +70,11 @@ During our analysis, we applied Independent Component Analysis (ICA) to the EEG 
 
 We compared the number of identified ICs in the dataset obtained from the "raw" data provided by the authors, as well as the dataset after applying bandpass filtering and Artifact Subspace Reconstruction (ASR) correction. We observed slight differences between these datasets. To gain further insights into the changes within the datasets, we also examined the probabilities shown by the ICA, which were influenced by our additional processing steps of bandpass filtering and ASR correction.
 
-| EEG (14 Channels & Eyeblink Dataset) | bandpass filter | ASR | Brain | Muscle | Eye | Heart | Line Noise | Channel Noise | Other |
-| ------------------------------------ | :-------------: | :-: | :---: | :----: | :-: | :---: | :--------: | :-----------: | :---: |
-| raw                                  |                 |     |       |   0    |     |   0   |     0      |       0       |   0   |
-| filtered                             |        v        |     |       |   0    |     |   0   |     0      |       0       |   0   |
-| ASR-corrected                        |        v        |  v  |       |   0    |     |   0   |     0      |       0       |   0   |
+| EEG (14 Channels & Eyeblink Dataset) | bandpass filter | ASR |     | Brain | Muscle | Eye | Heart | Line Noise | Channel Noise | Other |
+| ------------------------------------ | :-------------: | :-: | :-: | :---: | :----: | :-: | :---: | :--------: | :-----------: | :---: |
+| raw                                  |                 |     |     |   4   |   0    | 10  |   0   |     0      |       0       |   0   |
+| filtered                             |        v        |     |     |   4   |   0    | 10  |   0   |     0      |       0       |   0   |
+| ASR-corrected                        |        v        |  v  |     |   6   |   0    |  6  |   0   |     0      |       0       |   2   |
 
 ## Model Framework
 
