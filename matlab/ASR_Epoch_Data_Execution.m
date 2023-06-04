@@ -13,10 +13,11 @@ end
 original_epoch_structure = EEG.epoch;
 
 % Reshape the EEG data to continuous form
-original_size = size(EEG.data);
-EEG.data = reshape(EEG.data, [original_size(1), prod(original_size(2:end))]);
+original_size = size(merged_data);
+reshaped_merged_data=reshape(merged_data, [original_size(1), prod(original_size(2:end))]);
+EEG.data = reshaped_merged_data;
 EEG.trials = 1;
-EEG.pnts = size(EEG.data, 2);
+EEG.pnts = size(merged_data, 2);
 EEG.epoch = [];
 
 disp(size(EEG.data));

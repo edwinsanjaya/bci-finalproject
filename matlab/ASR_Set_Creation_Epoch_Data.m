@@ -71,7 +71,7 @@ EEG_merged.trials = size(EEG_merged.data, 3); % Number of trials
 EEG_merged.srate = sampling_rate;
 EEG_merged.times = time; %Time 
 % Set the label
-EEG_merged(1).labels = 'Voluntary Data';
+EEG_merged(1).labels = 'Merged Voluntary and Involuntary Data';
 % Define the channel labels
 chan_labels = {'Fp1', 'Fp2', 'F3', 'F4', 'T3', 'C3', 'Cz', 'C4', 'T4', 'P3', 'Pz', 'P4', 'O1', 'O2'};
 % Assign these channel labels to your data
