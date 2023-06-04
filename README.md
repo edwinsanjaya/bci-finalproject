@@ -76,6 +76,8 @@ We compared the number of identified ICs in the dataset obtained from the "raw" 
 | filtered                             |        v        |     |     |   4   |   0    | 10  |   0   |     0      |       0       |   0   |
 | ASR-corrected                        |        v        |  v  |     |   6   |   0    |  6  |   0   |     0      |       0       |   2   |
 
+| ![raw](/imgs/01_merged_raw_data_ICA.png) | ![filtered](/imgs/02_merged_bandpass_ICA.png) | ![asr-corrected](/imgs/03_merged_ASR_ICA.png) |
+
 ## Model Framework
 
 _Outline the architecture and components of your BCI system. This includes the input/output mechanisms, signal preprocessing techniques, data segmentation methods, artifact removal strategies, feature extraction approaches, machine learning models utilized, and any other relevant components._
