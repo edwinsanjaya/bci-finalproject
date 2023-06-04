@@ -76,7 +76,13 @@ We compared the number of identified ICs in the dataset obtained from the "raw" 
 | filtered                             |        v        |     |     |   4   |   0    | 10  |   0   |     0      |       0       |   0   |
 | ASR-corrected                        |        v        |  v  |     |   6   |   0    |  6  |   0   |     0      |       0       |   2   |
 
-| ![raw](/imgs/01_merged_raw_data_ICA.png) | ![filtered](/imgs/02_merged_bandpass_ICA.png) | ![asr-corrected](/imgs/03_merged_ASR_ICA.png) |
+<table style="padding:10px">
+  <tr>
+   <td><img src="./imgs/01_merged_raw_data_ICA.png"  alt="rew" width=370px height=auto></td> 
+   <td><img src="./imgs/02_merged_bandpass_ICA.png" alt="filtered" width=370px height=auto></td>
+   <td><img src="./imgs/03_merged_ASR_ICA.png" alt="asr-corrected" width=370px height=auto></td>
+  </tr>
+</table>
 
 ## Model Framework
 
