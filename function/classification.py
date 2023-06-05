@@ -1,7 +1,9 @@
 from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+
+import matplotlib as plt
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
@@ -24,4 +26,10 @@ def model_training(input_x, input_y, model, test_size=0.2):
     print(cm_test)
     print(classification_report(y_true=y_test, y_pred=y_test_predict))
 
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm_test,
+                                  display_labels=model.classes_)
+    disp.plot()
+    plt.show()
     return model
+
+
