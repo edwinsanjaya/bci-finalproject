@@ -2,11 +2,7 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-
-import matplotlib as plt
-
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_selection import RFE
 
 def model_training(input_x, input_y, model, test_size=0.2):
     x_train, x_test, y_train, y_test = train_test_split(input_x, input_y, test_size=test_size, random_state=42)
@@ -30,5 +26,14 @@ def model_training(input_x, input_y, model, test_size=0.2):
                                   display_labels=model.classes_)
     disp.plot()
     return model
+
+
+def RFE_analysis(input_x, input_y, model, n_feature_to_select=0.5):
+    rfe = RFE(model, step=300, n_features_to_select=n_feature_to_select)
+    rfe.fit(input_x, input_y.values.ravel())
+    print(input_x.columns)
+    print(rfe.support_)
+    print(rfe.ranking_)
+    return rfe.get_support(1)
 
 
