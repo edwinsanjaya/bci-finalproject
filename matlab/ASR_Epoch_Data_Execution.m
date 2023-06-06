@@ -26,7 +26,7 @@ arg_flatline = 'off';  % Flatline correction: 'off'
 arg_highpass = 'off';  % High pass filter: 'off'
 arg_channel = -1;  % Channel criterion: -1, do not remove bad channels
 arg_noisy = 'off';  % Noisy criterion: 'off'
-arg_burst = 10;  % Burst criterion: 5 standard deviations
+arg_burst = 5;  % Burst criterion: 5 standard deviations
 arg_window = 'off';  % Window criterion: 'off'
 
 % Apply artifact subspace reconstruction method
