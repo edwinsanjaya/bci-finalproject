@@ -1,20 +1,9 @@
 % Options to read: 'EEG-IO', 'EEG-VV', 'EEG-VR'
 data_folder = 'EEG-IO'; 
 
-% For EEG-IO
-%[master_data_sig_io, master_blinks_io, master_interval_corrupt_io, blink_intervals_io, min_blink_interval_io] = process_data('EEG-IO');
-[epochs_blinks_2_seconds_vol, epochs_blinks_3_seconds_vol, epochs_blinks_4_seconds_vol, epochs_blinks_5_seconds_vol] = process_blinks('EEG-IO', master_blinks_io, blink_intervals_io, master_interval_corrupt_io, master_data_sig_io);
-% For EEG-VV
-%[master_data_sig_vv, master_blinks_vv, master_interval_corrupt_vv, blink_intervals_vv, min_blink_interval_vv] = process_data('EEG-VV');
-[epochs_blinks_2_seconds_vv, epochs_blinks_3_seconds_vv, epochs_blinks_4_seconds_vv, epochs_blinks_5_seconds_vv] = process_blinks('EEG-VV', master_blinks_vv, blink_intervals_vv, master_interval_corrupt_vv, master_data_sig_vv);
-% For EEG-VR
-%[master_data_sig_vr, master_blinks_vr, master_interval_corrupt_vr, blink_intervals_vr, min_blink_interval_vr] = process_data('EEG-VR');
-[epochs_blinks_2_seconds_vr, epochs_blinks_3_seconds_vr, epochs_blinks_4_seconds_vr, epochs_blinks_5_seconds_vr] = process_blinks('EEG-VR', master_blinks_vr, blink_intervals_vr, master_interval_corrupt_vr, master_data_sig_vr);
+[master_data_sig, master_blinks, master_interval_corrupt, blink_intervals, min_blink_interval] = process_data('EEG-IO');
 
-epochs_blinks_2_seconds_invol = cat(3, epochs_blinks_2_seconds_vv, epochs_blinks_2_seconds_vr);
-epochs_blinks_3_seconds_invol = cat(3, epochs_blinks_3_seconds_vv, epochs_blinks_3_seconds_vr);
-epochs_blinks_4_seconds_invol = cat(3, epochs_blinks_4_seconds_vv, epochs_blinks_4_seconds_vr);
-epochs_blinks_5_seconds_invol = cat(3, epochs_blinks_5_seconds_vv, epochs_blinks_5_seconds_vr);
+
 
 function [epochs_blinks_2_seconds, epochs_blinks_3_seconds, epochs_blinks_4_seconds, epochs_blinks_5_seconds] = process_blinks(data_folder, master_blinks, blink_intervals, master_interval_corrupt, master_data_sig)
 
@@ -90,14 +79,7 @@ function [epochs_blinks_2_seconds, epochs_blinks_3_seconds, epochs_blinks_4_seco
             end
         end
     end
-
-    % Adjust the dimension order of the output arrays
-    epochs_blinks_2_seconds = permute(epochs_blinks_2_seconds, [2 1 3]);
-    epochs_blinks_3_seconds = permute(epochs_blinks_3_seconds, [2 1 3]);
-    epochs_blinks_4_seconds = permute(epochs_blinks_4_seconds, [2 1 3]);
-    epochs_blinks_5_seconds = permute(epochs_blinks_5_seconds, [2 1 3]);
 end
-
 
 
 
