@@ -333,7 +333,10 @@ Our system framework works as follows:
 _Describe the methods used to validate the effectiveness and reliability of your BCI system._
 
 Since we are working on the classifier to determine whether an eye-blink is voluntary and involuntary, 
-accuracy will be sufficient as the main metrics to determine our BCI system performance
+accuracy will be sufficient as the main metrics to determine our BCI system performance.
+Accuracy provides direct measure of how frequently our model is correct and easy to be understood
+In addition, since our data are relatively balanced, accuracy will not be biased in the certain class
+so, it won't require us to complicate our evaluation by using other metrics such as precision, recall and F1-score
 
 $$
 \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
