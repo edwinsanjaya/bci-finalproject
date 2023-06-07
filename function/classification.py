@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.feature_selection import RFE
 
-def model_training(input_x, input_y, model, test_size=0.2):
+def model_training(input_x, input_y, model, test_size=0.3):
     x_train, x_test, y_train, y_test = train_test_split(input_x, input_y, test_size=test_size, random_state=42)
     model.fit(x_train, y_train)
     y_train_predict = model.predict(x_train)
@@ -25,7 +25,7 @@ def model_training(input_x, input_y, model, test_size=0.2):
     disp = ConfusionMatrixDisplay(confusion_matrix=cm_test,
                                   display_labels=model.classes_)
     disp.plot()
-    return model
+    return test_acc, model
 
 
 def RFE_analysis(input_x, input_y, model, n_feature_to_select=0.5):

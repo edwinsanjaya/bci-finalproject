@@ -55,13 +55,8 @@ The experiments to collect the data are specified in the paper and a useful diag
 
 In our analysis of the EEG data, we conducted time and frequency domain analyses. For the time domain, we plotted the EEG signals for each channel, showing their amplitude over time. In the frequency domain, we computed the FFT of the signals to visualize their magnitude spectra. Additionally, we calculated the event-related spectral perturbation (ERSP) using spectrogram calculations. We plotted the average ERSP over time and frequency, as well as the ERSP of a single epoch. These analyses provided insights into the characteristics and variations of the EEG signals.
 <br>
-
-<table style="padding:10px">
-  <tr>
-   <td><img src="./imgs/Neurocomputing_dataset/00_time_frequency.png" alt="Neurocomputing Time and frequency analysis" min-width="150px" height="auto"></td>
-   <td><img src="./imgs/Neurocomputing_dataset/00_ERSP.png" alt="Neurocomputing ERSP" min-width="150px" height="auto"></td>
-  </tr>
-</table>
+<img src="./imgs/Neurocomputing_dataset/00_time_frequency.png" alt="Neurocomputing Time and frequency analysis" min-width="250px" height="auto">
+<img src="./imgs/Neurocomputing_dataset/00_ERSP.png" alt="Neurocomputing ERSP" min-width="250px" height="auto">
 <br>
 
 #### Quality Evaluation: literature survey and analysis
@@ -87,78 +82,80 @@ During our analysis, we applied Independent Component Analysis (ICA) to the EEG 
 
 We compared the number of identified ICs in the dataset obtained from the "raw" data provided by the authors, as well as the dataset after applying bandpass filtering and Artifact Subspace Reconstruction (ASR) correction. We observed slight differences between these datasets. To gain further insights into the changes within the datasets, we also examined the probabilities shown by the ICA, which were influenced by our additional processing steps of bandpass filtering and ASR correction.
 
-<table style="padding: 10px; border: solid 1px black">
+<table>
   <tr>
     <td>&nbsp;</td>
-    <td colspan="2" style="text-align: center; padding: 5px; font-weight: 600">
+    <td colspan="2" align="center">
       Pre-processing
     </td>
-    <td colspan="7" style="text-align: center; padding: 5px; font-weight: 600">
+    <td colspan="7" align="center">
       Average numbers of ICs classified by ICLabel
     </td>
   </tr>
   <tr>
     <td>EEG (14 Channels & Eyeblink Dataset)</td>
-    <td style="text-align: center; padding: 5px">bandpass filter</td>
-    <td style="text-align: center; padding: 5px">ASR</td>
-    <td style="text-align: center; padding: 5px">Brain</td>
-    <td style="text-align: center; padding: 5px">Muscle</td>
-    <td style="text-align: center; padding: 5px">Eye</td>
-    <td style="text-align: center; padding: 5px">Heart</td>
-    <td style="text-align: center; padding: 5px">Line Noise</td>
-    <td style="text-align: center; padding: 5px">Channel Noise</td>
-    <td style="text-align: center; padding: 5px">Other</td>
+    <td align="center">bandpass filter</td>
+    <td align="center">ASR</td>
+    <td align="center">Brain</td>
+    <td align="center">Muscle</td>
+    <td align="center">Eye</td>
+    <td align="center">Heart</td>
+    <td align="center">Line Noise</td>
+    <td align="center">Channel Noise</td>
+    <td align="center">Other</td>
   </tr>
   <tr>
     <td>Raw</td>
-    <td style="text-align: center; padding: 5px">&nbsp;</td>
-    <td style="text-align: center; padding: 5px">&nbsp;</td>
-    <td style="text-align: center; padding: 5px">4</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">10</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">4</td>
+    <td align="center">0</td>
+    <td align="center">10</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
   </tr>
   <tr>
     <td>Filtered</td>
-    <td style="text-align: center; padding: 5px">v</td>
-    <td style="text-align: center; padding: 5px">&nbsp;</td>
-    <td style="text-align: center; padding: 5px">4</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">10</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
+    <td align="center">v</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">4</td>
+    <td align="center">0</td>
+    <td align="center">10</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
   </tr>
   <tr>
     <td>ASR-corrected</td>
-    <td style="text-align: center; padding: 5px">v</td>
-    <td style="text-align: center; padding: 5px">v</td>
-    <td style="text-align: center; padding: 5px">6</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">6</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">2</td>
+    <td align="center">v</td>
+    <td align="center">v</td>
+    <td align="center">6</td>
+    <td align="center">0</td>
+    <td align="center">6</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">2</td>
   </tr>
 </table>
 
 Upon examining the results, we can observe that applying ASR to the filtered data yields less accurate detection of independent components, with some components being categorized as "others," which is not ideal. This can be attributed to the ASR algorithm and its impact on the data. The ASR correction process has the potential to remove or weaken EEG components associated with eye activities or other artifacts, as well as alter the spatial distribution and temporal characteristics of the remaining ICs. Consequently, this leads to a decrease in the number of identified ICs related to these artifacts. Its objective is to eliminate artifacts and optimize the signal-to-noise ratio, resulting in changes to the ICs' amplitude, shape, and timing. Since the dataset provided by the authors had been pre-processed, these ARS related alterations can potentially negatively affect the interpretation and identification of the ICs.
 
-<table style="padding:10px">
-   <thead>
-    <td style="text-align: center;">Raw</td>
-    <td style="text-align: center;">Filtered</td>
-    <td style="text-align: center;">ASR-corrected</td>
-   </thead>
+<table>
   <tr>
-   <td><img src="./imgs/Neurocomputing_dataset/01_ICA_merged_raw_data.png"  alt="rew" width=370px height=auto></td> 
-   <td><img src="./imgs/Neurocomputing_dataset/02_ICA_merged_bandpass.png" alt="filtered" width=370px height=auto></td>
-   <td><img src="./imgs/Neurocomputing_dataset/03_ICA_merged_ASR.png" alt="asr-corrected" width=370px height=auto></td>
+    <td align="center">Raw</td>
+    <td><img src="./imgs/Neurocomputing_dataset/01_ICA_merged_raw_data.png"  alt="rew" min-width="100px" max-width="300px" height=auto></td> 
+  </tr>
+  <tr>
+    <td align="center">Filtered</td>
+    <td><img src="./imgs/Neurocomputing_dataset/02_ICA_merged_bandpass.png" alt="filtered" min-width="100px" max-width="300px" height=auto></td>
+  </tr>
+  <tr>
+    <td align="center">ASR-corrected</td>
+    <td><img src="./imgs/Neurocomputing_dataset/03_ICA_merged_ASR.png" alt="asr-corrected" min-width="100px" max-width="300px" height=auto></td>
   </tr>
 </table>
 
@@ -170,120 +167,129 @@ A public dataset comprising three different groups of eye-blink related data, EE
 
 The EEG-VV and EEG-VR datasets consisted of involuntary eye-blinks (natural blinks) recorded from the frontal electrodes (Fp1, Fp2) for 12 subjects using OpenBCI Device and BIOPAC Cap100C. The subjects performed two activities: watching a video (EEG-VV) and reading an article (EEG-VR). The eye-blinks in these datasets were also manually annotated using a video feed.
 
-<br>
-<table style="padding:10px">
-<thead>
-    <td style="text-align: center;">EEG-IO Blink interval patterns</td>
-    <td style="text-align: center;">EEG-VR Blink interval patterns</td>
-    <td style="text-align: center;">EEG-VV Blink interval patterns</td>
-   </thead>
+<table>
   <tr>
-   <td><img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-IO.png" alt="GNAN raw data visualization IO" min-width="150px" height="auto"></td>
-   <td><img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-VR.png" alt="GNAN raw data visualization VR" min-width="150px" height="auto"></td>
-   <td><img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-VV.png" alt="GNAN raw data visualization VV" min-width="150px" height="auto"></td>
+    <td align="center">EEG-IO Blink interval patterns</td>
+    <td>
+      <img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-IO.png" alt="GNAN raw data visualization IO" min-width="100px" max-width="300px" height="auto">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">EEG-VR Blink interval patterns</td>
+    <td>
+      <img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-VR.png" alt="GNAN raw data visualization VR" min-width="100px" max-width="300px" height="auto">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">EEG-VV Blink interval patterns</td>
+    <td>
+      <img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-VV.png" alt="GNAN raw data visualization VV" min-width="100px" max-width="300px" height="auto">
+    </td>
   </tr>
 </table>
-<br>
 
 #### Quality Evaluation: literature survey and analysis
 
-The dataset provide a lot of contribution in the BCI research with 27 citations, some of the notable contribution for other research are:
+The dataset provide some contribution in the BCI research, some of the notable contribution are:
 
-- [Simultaneous Eye Blink Characterization and Elimination From Low-Channel Prefrontal EEG Signals Enhances Driver Drowsiness Detection](https://ieeexplore.ieee.org/abstract/document/9484745) as real dataset for generating an algorithm for eye blink detection and elimination
-- [EEGdenoiseNet: a benchmark dataset for deep learning solutions of EEG denoising](https://iopscience.iop.org/article/10.1088/1741-2552/ac2bf8) where the dataset become a the part of EEGdenoiseNet, a dataset suitable for deep learning based EEG denoising research)
-- [Machine learning classifier for eye-blink artifact detection](https://www.sciencedirect.com/science/article/pii/S2772528622000772) as real dataset for comparative analysis between machine-learning classifiers on eye-blink detection
-- And other [citations](https://scholar.google.com/scholar?oi=bibs&cites=5737901810583805697) as well
+- Blink: A Fully Automated Unsupervised Algorithm for Eye-Blink Detection in EEG Signals, Mohit Agarwal and Raghupathy Sivakumar, 57th Annual Allerton Conference on Communication, Control, and Computing, 2019[PDF](https://proceedings.allerton.csl.illinois.edu/media/files/0174.pdf)
+- Charge for a whole day: Extending Battery Life for BCI Wearables using a Lightweight Wake-Up Command,Mohit Agarwal and Raghupathy Sivakumar,CHI '20: Proceedings of the 2020 CHI Conference on Human Factors in Computing System, 2020[PDF](https://dl.acm.org/doi/pdf/10.1145/3313831.3376738)
+- Blink to Get In: Biometric Authentication for Mobile Devices using EEG Signals,Ekansh Gupta, Mohit Agarwal, and Raghupathy Sivakumar,ICC 2020 - 2020 IEEE International Conference on Communications , 2020[PDF](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9148741&tag=1)
 
-In addition, the main author of the paper has a high credibility:
+In addition, the authors of the papers have high credibility:
 
-- Ph.D. degree in Engineering, Graduate School of Integrated Design Engineering, Keio University, Japan
-- 7+ years of research experience
-- Google Scholar Page: https://scholar.google.com/citations?user=69k7XzYAAAAJ
+- Mohit Agarwal - Quant Strat at GS | PhD from GT, Google Scholar Page: https://scholar.google.com/citations?user=qB4EgbAAAAAJ&hl=en&oi=sra
+- Raghupathy Sivakumar - Wayne J. Holman Chair Professor, School of Electrical and Computer Engineering, Georgia Tech, Google Scholar Page: https://scholar.google.com/citations?user=FGB5FvgAAAAJ&hl=en&oi=sra
+- Ekansh Gupta - PhD Student, Georgia Tech, Google Scholar Page: https://scholar.google.com/citations?user=HShuFkgAAAAJ&hl=en&oi=sra
 
 #### Analyzing the hidden independent components within EEG using ICA with ICLabel
 
-The dataset was created by the original authors of the paper through a series of processing steps. They initially filtered the recorded EOG signals using a low-pass filter (Butterworth, cutoff frequency: 8.0 Hz) to reduce cerebral activities. Then, they detected the first positive peaks of blinks in the filtered EOG signals using a hard threshold (threshold value: 50 μV) and visually inspected these peaks to confirm their validity. The authors then segmented the eyeblink features and vertical EOG signals into 4-second epochs based on the point of maximum amplitude in the EOG data.
+During our analysis, we conducted Independent Component Analysis (ICA) on the EEG epoch data and utilized ICLabel for automatic labeling. The components we obtained were specifically associated with eye activities. This is expected since the original dataset solely contained data from the Fp1 and Fp2 channels, which are known to be related to eye signals.
 
-During our analysis, we applied Independent Component Analysis (ICA) to the EEG epoch data and used ICLabel for automatic labeling. It's important to note that the components we obtained were specifically related to brain and eye activities, reflecting the processing steps conducted by the original authors. So we wish to clarify, when we mention "raw" data, we are referring to the data that includes the processing performed by the original authors, without any additional processing from our side.
+We performed a comparison of the number of identified ICs in the dataset obtained from the raw data provided by the authors, as well as the dataset after applying bandpass filtering and Artifact Subspace Reconstruction (ASR) correction. Interestingly, we observed no discernible difference in the classification of the identified components, as both were identified as eye-related components. However, we did notice slight variations in the accuracy of these datasets. To gain further insights into the changes within the datasets, we also examined the probabilities generated by the ICA. These probabilities were influenced by our additional processing steps, including bandpass filtering and ASR correction.
 
-We compared the number of identified ICs in the dataset obtained from the "raw" data provided by the authors, as well as the dataset after applying bandpass filtering and Artifact Subspace Reconstruction (ASR) correction. We observed slight differences between these datasets. To gain further insights into the changes within the datasets, we also examined the probabilities shown by the ICA, which were influenced by our additional processing steps of bandpass filtering and ASR correction.
-
-<table style="padding: 10px; border: solid 1px black">
+<table>
   <tr>
     <td>&nbsp;</td>
-    <td colspan="2" style="text-align: center; padding: 5px; font-weight: 600">
+    <td colspan="2" align="center">
       Pre-processing
     </td>
-    <td colspan="7" style="text-align: center; padding: 5px; font-weight: 600">
+    <td colspan="7" align="center">
       Average numbers of ICs classified by ICLabel
     </td>
   </tr>
   <tr>
-    <td>EEG (14 Channels & Eyeblink Dataset)</td>
-    <td style="text-align: center; padding: 5px">bandpass filter</td>
-    <td style="text-align: center; padding: 5px">ASR</td>
-    <td style="text-align: center; padding: 5px">Brain</td>
-    <td style="text-align: center; padding: 5px">Muscle</td>
-    <td style="text-align: center; padding: 5px">Eye</td>
-    <td style="text-align: center; padding: 5px">Heart</td>
-    <td style="text-align: center; padding: 5px">Line Noise</td>
-    <td style="text-align: center; padding: 5px">Channel Noise</td>
-    <td style="text-align: center; padding: 5px">Other</td>
+    <td>EEG (2 Channels & Combined Eyeblink Dataset)</td>
+    <td align="center">bandpass filter</td>
+    <td align="center">ASR</td>
+    <td align="center">Brain</td>
+    <td align="center">Muscle</td>
+    <td align="center">Eye</td>
+    <td align="center">Heart</td>
+    <td align="center">Line Noise</td>
+    <td align="center">Channel Noise</td>
+    <td align="center">Other</td>
   </tr>
   <tr>
     <td>Raw</td>
-    <td style="text-align: center; padding: 5px">&nbsp;</td>
-    <td style="text-align: center; padding: 5px">&nbsp;</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">2</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
   </tr>
   <tr>
     <td>Filtered</td>
-    <td style="text-align: center; padding: 5px">v</td>
-    <td style="text-align: center; padding: 5px">&nbsp;</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
+    <td align="center">v</td>
+    <td align="center">&nbsp;</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">2</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
   </tr>
   <tr>
     <td>ASR-corrected</td>
-    <td style="text-align: center; padding: 5px">v</td>
-    <td style="text-align: center; padding: 5px">v</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
-    <td style="text-align: center; padding: 5px">0</td>
+    <td align="center">v</td>
+    <td align="center">v</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">2</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
+    <td align="center">0</td>
   </tr>
 </table>
 
-Upon examining the results, we can observe that applying ASR to the filtered data yields less accurate detection of independent components, with some components being categorized as "others," which is not ideal. This can be attributed to the ASR algorithm and its impact on the data. The ASR correction process has the potential to remove or weaken EEG components associated with eye activities or other artifacts, as well as alter the spatial distribution and temporal characteristics of the remaining ICs. Consequently, this leads to a decrease in the number of identified ICs related to these artifacts. Its objective is to eliminate artifacts and optimize the signal-to-noise ratio, resulting in changes to the ICs' amplitude, shape, and timing. Since the dataset provided by the authors had been pre-processed, these ARS related alterations can potentially negatively affect the interpretation and identification of the ICs.
+Upon examining the results, we can observe that applying ASR to the filtered data yields more accurate detection of independent components.
 
-<table style="padding:10px">
-   <thead>
-    <td style="text-align: center;">Raw</td>
-    <td style="text-align: center;">Filtered</td>
-    <td style="text-align: center;">ASR-corrected</td>
-   </thead>
+<table>
   <tr>
-   <td><img src="./imgs/GNAN_dataset/01_ICA_merged_raw_data.png"  alt="rew" width=370px height=auto></td> 
-   <td><img src="./imgs/GNAN_dataset/02_ICA_merged_bandpass.png" alt="filtered" width=370px height=auto></td>
-   <td><img src="./imgs/GNAN_dataset/03_ICA_merged_ASR.png" alt="asr-corrected" width=370px height=auto></td>
+    <td align="center">Raw</td>
+    <td>
+      <img src="./imgs/GNAN_dataset/01_ICA_merged_raw_data.png" alt="rew" min-width="100px" max-width="300px" height="auto"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">Filtered</td>
+    <td>
+      <img src="./imgs/GNAN_dataset/02_ICA_merged_bandpass.png" alt="filtered" min-width="100px" max-width="300px" height="auto"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">ASR-corrected</td>
+    <td>
+      <img src="./imgs/GNAN_dataset/03_ICA_merged_ASR.png" alt="asr-corrected" min-width="100px" max-width="300px" height="auto"/>
+    </td>
   </tr>
 </table>
-
-Based on our analysis and evaluation of the data, we have determined that our pre-processing steps do not improve the Independent Component Analysis (ICA) results. Therefore, it is concluded that the best course of action is to continue utilizing the raw data provided by the authors.
 
 ## Model Framework
 
@@ -322,6 +328,7 @@ _Describe the usage of their BCI model's code._
 _Explain the required environment and dependencies needed to run the code. Describe any configurable options or parameters within the code._
 
 Used software application:
+
 1. Jupyter Notebook: Works as a user interface for the classifier
 2. Python: To run the python programs and libraries, mainly working on feature extraction and classification
 3. MATLAB: To pre-process the EEG signal before processed by Python
