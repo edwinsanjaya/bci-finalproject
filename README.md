@@ -36,7 +36,11 @@ _video here_
 
 ## Dataset
 
-For the purpose of this project, we utilized the dataset developed by Suguru Kanoga, Masaki Nakanishi, and Yasue Mitsukura as documented in their research paper titled "Assessing the effects of voluntary and involuntary eyeblinks in independent components of electroencephalogram" [[1]](#references). To acquire the dataset, we communicated with the authors and obtained the dataset "EyeblinkDataset" directly from their Google Drive.
+In this project, we worked with two datasets, both named EyeBlinkDataset. To simplify the reference, we distinguished them based on their place of publication: one dataset was published in the Neurocomputing journal, while the other dataset was available on the webpage of the Georgia Tech Networks And Mobile Computing Research Group (GNAN).
+
+### Neurocomputing EyeblinkDataset
+
+We utilized the dataset developed by Suguru Kanoga, Masaki Nakanishi, and Yasue Mitsukura as documented in their research paper titled "Assessing the effects of voluntary and involuntary eyeblinks in independent components of electroencephalogram" [[1]](#references). To acquire the dataset, we communicated with the authors and obtained the dataset "EyeblinkDataset" directly from their Google Drive.
 
 The data was collected from 14 channels (Fp1, Fp2, F3, F4, T3, C3, Cz, C4, T4, P3, Pz, P4, O1, and O2) according to the 10–20 system + 1 EOG signal.
 <br>
@@ -51,9 +55,13 @@ The experiments to collect the data are specified in the paper and a useful diag
 
 In our analysis of the EEG data, we conducted time and frequency domain analyses. For the time domain, we plotted the EEG signals for each channel, showing their amplitude over time. In the frequency domain, we computed the FFT of the signals to visualize their magnitude spectra. Additionally, we calculated the event-related spectral perturbation (ERSP) using spectrogram calculations. We plotted the average ERSP over time and frequency, as well as the ERSP of a single epoch. These analyses provided insights into the characteristics and variations of the EEG signals.
 <br>
-<img src="./imgs/dataset/time_frequency.png" alt="Time and frequency analysis" min-width="300px" height="auto">
-<br>
-<img src="./imgs/dataset/ERSP.png" alt="ERSP" min-width="300px" height="auto">
+
+<table style="padding:10px">
+  <tr>
+   <td><img src="./imgs/Neurocomputing_dataset/00_time_frequency.png" alt="Neurocomputing Time and frequency analysis" min-width="150px" height="auto"></td>
+   <td><img src="./imgs/Neurocomputing_dataset/00_ERSP.png" alt="Neurocomputing ERSP" min-width="150px" height="auto"></td>
+  </tr>
+</table>
 <br>
 
 #### Quality Evaluation: literature survey and analysis
@@ -148,9 +156,130 @@ Upon examining the results, we can observe that applying ASR to the filtered dat
     <td style="text-align: center;">ASR-corrected</td>
    </thead>
   <tr>
-   <td><img src="./imgs/01_merged_raw_data_ICA.png"  alt="rew" width=370px height=auto></td> 
-   <td><img src="./imgs/02_merged_bandpass_ICA.png" alt="filtered" width=370px height=auto></td>
-   <td><img src="./imgs/03_merged_ASR_ICA.png" alt="asr-corrected" width=370px height=auto></td>
+   <td><img src="./imgs/Neurocomputing_dataset/01_ICA_merged_raw_data.png"  alt="rew" width=370px height=auto></td> 
+   <td><img src="./imgs/Neurocomputing_dataset/02_ICA_merged_bandpass.png" alt="filtered" width=370px height=auto></td>
+   <td><img src="./imgs/Neurocomputing_dataset/03_ICA_merged_ASR.png" alt="asr-corrected" width=370px height=auto></td>
+  </tr>
+</table>
+
+Based on our analysis and evaluation of the data, we have determined that our pre-processing steps do not improve the Independent Component Analysis (ICA) results. Therefore, it is concluded that the best course of action is to continue utilizing the raw data provided by the authors.
+
+### Georgia Tech Networks And Mobile Computing Research Group (GNAN) EyeblinkDataset
+
+A public dataset comprising three different groups of eye-blink related data, EEG-IO, EEG-VV, and EEG-VR, was utilized. The EEG-IO dataset included voluntary single eye-blinks triggered by external stimulation, recorded from the frontal electrodes (Fp1, Fp2) for 20 subjects using OpenBCI Device and BIOPAC Cap100C. Each subject participated in a single session, which involved approximately 25 blinks. The EEG signals in this dataset were manually annotated using a video feed.
+
+The EEG-VV and EEG-VR datasets consisted of involuntary eye-blinks (natural blinks) recorded from the frontal electrodes (Fp1, Fp2) for 12 subjects using OpenBCI Device and BIOPAC Cap100C. The subjects performed two activities: watching a video (EEG-VV) and reading an article (EEG-VR). The eye-blinks in these datasets were also manually annotated using a video feed.
+
+<br>
+<table style="padding:10px">
+<thead>
+    <td style="text-align: center;">EEG-IO Blink interval patterns</td>
+    <td style="text-align: center;">EEG-VR Blink interval patterns</td>
+    <td style="text-align: center;">EEG-VV Blink interval patterns</td>
+   </thead>
+  <tr>
+   <td><img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-IO.png" alt="GNAN raw data visualization IO" min-width="150px" height="auto"></td>
+   <td><img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-VR.png" alt="GNAN raw data visualization VR" min-width="150px" height="auto"></td>
+   <td><img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-VV.png" alt="GNAN raw data visualization VV" min-width="150px" height="auto"></td>
+  </tr>
+</table>
+<br>
+
+#### Quality Evaluation: literature survey and analysis
+
+The dataset provide a lot of contribution in the BCI research with 27 citations, some of the notable contribution for other research are:
+
+- [Simultaneous Eye Blink Characterization and Elimination From Low-Channel Prefrontal EEG Signals Enhances Driver Drowsiness Detection](https://ieeexplore.ieee.org/abstract/document/9484745) as real dataset for generating an algorithm for eye blink detection and elimination
+- [EEGdenoiseNet: a benchmark dataset for deep learning solutions of EEG denoising](https://iopscience.iop.org/article/10.1088/1741-2552/ac2bf8) where the dataset become a the part of EEGdenoiseNet, a dataset suitable for deep learning based EEG denoising research)
+- [Machine learning classifier for eye-blink artifact detection](https://www.sciencedirect.com/science/article/pii/S2772528622000772) as real dataset for comparative analysis between machine-learning classifiers on eye-blink detection
+- And other [citations](https://scholar.google.com/scholar?oi=bibs&cites=5737901810583805697) as well
+
+In addition, the main author of the paper has a high credibility:
+
+- Ph.D. degree in Engineering, Graduate School of Integrated Design Engineering, Keio University, Japan
+- 7+ years of research experience
+- Google Scholar Page: https://scholar.google.com/citations?user=69k7XzYAAAAJ
+
+#### Analyzing the hidden independent components within EEG using ICA with ICLabel
+
+The dataset was created by the original authors of the paper through a series of processing steps. They initially filtered the recorded EOG signals using a low-pass filter (Butterworth, cutoff frequency: 8.0 Hz) to reduce cerebral activities. Then, they detected the first positive peaks of blinks in the filtered EOG signals using a hard threshold (threshold value: 50 μV) and visually inspected these peaks to confirm their validity. The authors then segmented the eyeblink features and vertical EOG signals into 4-second epochs based on the point of maximum amplitude in the EOG data.
+
+During our analysis, we applied Independent Component Analysis (ICA) to the EEG epoch data and used ICLabel for automatic labeling. It's important to note that the components we obtained were specifically related to brain and eye activities, reflecting the processing steps conducted by the original authors. So we wish to clarify, when we mention "raw" data, we are referring to the data that includes the processing performed by the original authors, without any additional processing from our side.
+
+We compared the number of identified ICs in the dataset obtained from the "raw" data provided by the authors, as well as the dataset after applying bandpass filtering and Artifact Subspace Reconstruction (ASR) correction. We observed slight differences between these datasets. To gain further insights into the changes within the datasets, we also examined the probabilities shown by the ICA, which were influenced by our additional processing steps of bandpass filtering and ASR correction.
+
+<table style="padding: 10px; border: solid 1px black">
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="2" style="text-align: center; padding: 5px; font-weight: 600">
+      Pre-processing
+    </td>
+    <td colspan="7" style="text-align: center; padding: 5px; font-weight: 600">
+      Average numbers of ICs classified by ICLabel
+    </td>
+  </tr>
+  <tr>
+    <td>EEG (14 Channels & Eyeblink Dataset)</td>
+    <td style="text-align: center; padding: 5px">bandpass filter</td>
+    <td style="text-align: center; padding: 5px">ASR</td>
+    <td style="text-align: center; padding: 5px">Brain</td>
+    <td style="text-align: center; padding: 5px">Muscle</td>
+    <td style="text-align: center; padding: 5px">Eye</td>
+    <td style="text-align: center; padding: 5px">Heart</td>
+    <td style="text-align: center; padding: 5px">Line Noise</td>
+    <td style="text-align: center; padding: 5px">Channel Noise</td>
+    <td style="text-align: center; padding: 5px">Other</td>
+  </tr>
+  <tr>
+    <td>Raw</td>
+    <td style="text-align: center; padding: 5px">&nbsp;</td>
+    <td style="text-align: center; padding: 5px">&nbsp;</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+  </tr>
+  <tr>
+    <td>Filtered</td>
+    <td style="text-align: center; padding: 5px">v</td>
+    <td style="text-align: center; padding: 5px">&nbsp;</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+  </tr>
+  <tr>
+    <td>ASR-corrected</td>
+    <td style="text-align: center; padding: 5px">v</td>
+    <td style="text-align: center; padding: 5px">v</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+    <td style="text-align: center; padding: 5px">0</td>
+  </tr>
+</table>
+
+Upon examining the results, we can observe that applying ASR to the filtered data yields less accurate detection of independent components, with some components being categorized as "others," which is not ideal. This can be attributed to the ASR algorithm and its impact on the data. The ASR correction process has the potential to remove or weaken EEG components associated with eye activities or other artifacts, as well as alter the spatial distribution and temporal characteristics of the remaining ICs. Consequently, this leads to a decrease in the number of identified ICs related to these artifacts. Its objective is to eliminate artifacts and optimize the signal-to-noise ratio, resulting in changes to the ICs' amplitude, shape, and timing. Since the dataset provided by the authors had been pre-processed, these ARS related alterations can potentially negatively affect the interpretation and identification of the ICs.
+
+<table style="padding:10px">
+   <thead>
+    <td style="text-align: center;">Raw</td>
+    <td style="text-align: center;">Filtered</td>
+    <td style="text-align: center;">ASR-corrected</td>
+   </thead>
+  <tr>
+   <td><img src="./imgs/GNAN_dataset/01_ICA_merged_raw_data.png"  alt="rew" width=370px height=auto></td> 
+   <td><img src="./imgs/GNAN_dataset/02_ICA_merged_bandpass.png" alt="filtered" width=370px height=auto></td>
+   <td><img src="./imgs/GNAN_dataset/03_ICA_merged_ASR.png" alt="asr-corrected" width=370px height=auto></td>
   </tr>
 </table>
 
@@ -210,3 +339,6 @@ _Present a detailed comparison and analysis of your BCI system's performance aga
 ## References
 
 1. Kanoga, S., Nakanishi, M., & Mitsukura, Y. (2016). Assessing the effects of voluntary and involuntary eyeblinks in independent components of electroencephalogram. Neurocomputing, 193, 20-32. [https://doi.org/10.1016/j.neucom.2016.01.057](https://doi.org/10.1016/j.neucom.2016.01.057)
+2. Agarwal, Mohit & Sivakumar, Raghupathy. (2019). Blink: A Fully Automated Unsupervised Algorithm for Eye-Blink Detection in EEG Signals. 1113-1121. 10.1109/ALLERTON.2019.8919795. [https://doi.org/10.1109/ALLERTON.2019.8919795](https://doi.org/10.1109/ALLERTON.2019.8919795)
+3. Agarwal, Mohit & Sivakumar, R.. (2020). Charge for a whole day: Extending Battery Life for BCI Wearables using a Lightweight Wake-Up Command. 1-14. 10.1145/3313831.3376738.
+4. Gupta, Ekansh & Agarwal, Mohit & Sivakumar, R.. (2020). Blink to Get In: Biometric Authentication for Mobile Devices using EEG Signals. 1-6. 10.1109/ICC40277.2020.9148741.
