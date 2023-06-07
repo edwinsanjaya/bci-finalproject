@@ -192,9 +192,14 @@ _Describe the usage of their BCI model's code._
 
 _Explain the required environment and dependencies needed to run the code. Describe any configurable options or parameters within the code._
 
+Used software application:
+1. Jupyter Notebook: Works as a user interface for the classifier
+2. Python: To run the python programs and libraries, mainly working on feature extraction and classification
+3. MATLAB: To pre-process the EEG signal before processed by Python
+
 ### Configuration
 
-### Excution
+### Execution
 
 _Provide instructions on how to execute the code._
 
