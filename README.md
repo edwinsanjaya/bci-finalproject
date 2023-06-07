@@ -300,13 +300,19 @@ create a model that can classify voluntary and involuntary blinking. We explored
 models of supervised learning and apply the experiment on each of them. This approach provided valuable insights
 since employing multiple models facilitated a comparison of their performance and helped identify the
 model that best suited the data.
-Our system framework is as follow:
+Our system framework works as follows:
 
-1. Preprocessing of the data: noise was filtered out and the data was be organized homogeneously
-   across all subjects using Matlab.
-2. Feature engineering: the exploration of different features, such as peak amplitude, duration, blink frequency, inter-blink
-   interval or time-frequency features, was conducted.Out of the features extracted, the most informative ones were used to reduce the
-   dimensionality of the data and improve the performance of the machine learning algorithms.
+1. Preprocessing of the data: we use band-pass filtering to supress the signal with frequency above 50Hz and ASR for noise-removal.
+   Having a clean EEG signal is crucial to train our model in eye-blinking classification 
+2. Feature engineering: the exploration of different features to be used for model training, such as peak:
+   - Signal properties:
+     - Statistical properties: Mean, Median, Min, Max, Range, Standard Deviation, Variance
+     - Kurtosis
+     - Skew
+     - Entropy
+   - Power spectral density
+     - Check for different properties in each frequency bands (Delta, Theta, Alpha, Beta, Gamma)
+     - Statistical properties: Mean, Min, Max, Range
 3. Machine learning model development: the preprocessed data and selected features were used to
    generate the supervised learning models, we use the following models to work as our classifier:
    - Logistic Regression
@@ -343,7 +349,7 @@ Where:
 
 _Describe the usage of their BCI model's code._
 
-### Environment
+### Environment & Dependencies
 
 _Explain the required environment and dependencies needed to run the code. Describe any configurable options or parameters within the code._
 
@@ -352,9 +358,11 @@ Used software application:
 2. Python v3.11: To run the python programs and libraries, mainly working on feature extraction and classification
 3. MATLAB R2023a: To pre-process the EEG signal before processed by Python
 
-### Configuration
+### Configurable Options & Parameter
 
-### Execution
+
+
+### How to Execute the Code
 
 1. Have Jupyter Notebook, Jupyter and Python installed in the local device
 2. Install the required Python dependencies from requirement.txt
@@ -403,6 +411,12 @@ The following table represent the accuracy of the voluntary & involuntary blink 
       <td align="center">0%</td>
    </tr>
 </table>
+
+Based on the experiment, by having the dataset
+
+- Using only two-channel (Fp1 and Fp2) is quite challenging for the non-neural network classifier to differentiate 
+the voluntary and involuntary eye-blinking
+- However, the recurrent neural network model provides a reliable result to differentiate the voluntary and involuntary eye-blinking
 
 ## References
 
