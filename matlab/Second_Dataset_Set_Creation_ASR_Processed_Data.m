@@ -33,6 +33,11 @@ EEG.pnts = num_timepoints_per_epoch;
 EEG.trials = size(EEG.data, 3);
 EEG.epoch = original_epoch_structure;
 
+n_vol = size(epochs_blinks_4_seconds_vol,3); 
+% Separate epochs_blinks_4_seconds_vol
+epochs_blinks_ASR_vol = EEG.data(:,:,1:n_vol);
+% Separate epochs_blinks_4_seconds_invol
+epochs_blinks_ASR_invol = EEG.data(:,:,(n_vol+1):end);
 
 samples=size(EEG.data, 3);
 sampling_rate=250; %Sample rate of the dataset of voluntary blinking

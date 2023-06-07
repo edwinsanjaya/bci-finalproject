@@ -43,6 +43,13 @@ epochs_blinks_4_seconds_merged = reshape(bandpass_epochs_blinks_4_seconds_merged
 
 warning('on', 'all');
 
+n_vol = size(epochs_blinks_4_seconds_vol,3); 
+% Separate epochs_blinks_4_seconds_vol
+epochs_blinks_bandpass_vol = epochs_blinks_4_seconds_merged(:,:,1:n_vol);
+% Separate epochs_blinks_4_seconds_invol
+epochs_blinks_bandpass_invol = epochs_blinks_4_seconds_merged(:,:,(n_vol+1):end);
+
+
 samples=size(epochs_blinks_4_seconds_merged, 3);
 sampling_rate=250; %Sample rate of the entire dataset
 % Calculate time duration
