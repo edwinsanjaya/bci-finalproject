@@ -297,8 +297,7 @@ _Outline the architecture and components of your BCI system. This includes the i
 
 Taking into account that the dataset has already been labeled, supervised learning was used to
 create a model that can classify voluntary and involuntary blinking. We explored various
-models of supervised learning, specifically: Support Vector Machine (SVM), Random Forest, Recurrent
-Neural Network (RNN), and Linear Discriminant Analysis (LDA). This approach provided valuable insights
+models of supervised learning and apply the experiment on each of them. This approach provided valuable insights
 since employing multiple models facilitated a comparison of their performance and helped identify the
 model that best suited the data.
 Our system framework is as follow:
@@ -309,15 +308,36 @@ Our system framework is as follow:
    interval or time-frequency features, was conducted.Out of the features extracted, the most informative ones were used to reduce the
    dimensionality of the data and improve the performance of the machine learning algorithms.
 3. Machine learning model development: the preprocessed data and selected features were used to
-   generate the supervised learning models for Support Vector Machine (SVM), Random Forest,
-   Recurrent Neural Network (RNN), and Linear Discriminant Analysis (LDA).
-4. Evaluation: the dataset was divided into a training set and a validation set, then each model was trained on the training set and their performance was assessed using the validation set. After obtaining each model's performance, their results were compared and the most effective model was selected.
+   generate the supervised learning models, we use the following models to work as our classifier:
+   - Logistic Regression
+   - Random Forest
+   - Support Vector Machine
+   - XGBoost
+   - XGBoost Random Forest
+   - Linear Discriminant Analysis
+   - K-Nearest Neighbors
+   - Recurrent Neural Network
+4. Evaluation: 70% of the dataset were used as a training set to train our model, after the model is trained, the rest 30% of the dataset were used as a testing/validation set (15% validation and 15% testing for neural network. We will apply the same procedure for each model, their performance results were to determine the most effective model to be used for our BCI system.
+5. Fine-tuning:
 
 ![Framework](/imgs/framework.png)
 
 ## Validation
 
 _Describe the methods used to validate the effectiveness and reliability of your BCI system._
+
+Since we are working on the classifier to determine whether an eye-blink is voluntary and involuntary, 
+accuracy will be sufficient as the main metrics to determine our BCI system performance
+
+$$
+\text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
+$$
+
+Where:
+- TP: True Positives: Voluntary eye-blink classified as voluntary eye-blink
+- TN: True Negatives: Involuntary eye-blink classified as involuntary eye-blink
+- FP: False Positives: Involuntary eye-blink classified as voluntary eye-blink
+- FN: False Negatives: Voluntary eye-blink classified as involuntary eye-blink
 
 ## Usage
 
@@ -328,20 +348,61 @@ _Describe the usage of their BCI model's code._
 _Explain the required environment and dependencies needed to run the code. Describe any configurable options or parameters within the code._
 
 Used software application:
-
 1. Jupyter Notebook: Works as a user interface for the classifier
-2. Python: To run the python programs and libraries, mainly working on feature extraction and classification
-3. MATLAB: To pre-process the EEG signal before processed by Python
+2. Python v3.11: To run the python programs and libraries, mainly working on feature extraction and classification
+3. MATLAB R2023a: To pre-process the EEG signal before processed by Python
 
 ### Configuration
 
 ### Execution
 
-_Provide instructions on how to execute the code._
+1. Have Jupyter Notebook, Jupyter and Python installed in the local device
+2. Install the required Python dependencies from requirement.txt
+3. Run main.ipynb 
 
 ## Results
 
 _Present a detailed comparison and analysis of your BCI system's performance against the competing methods. Include metrics such as accuracy, precision, recall, F1-score, or any other relevant evaluation metrics. Compare and contrast your BCI system with existing competing methods. Highlight the advantages and unique aspects of your system._
+
+The following table represent the accuracy of the voluntary & involuntary blink classifier by using different models:
+<table>
+   <tr>
+      <th>Model</th>
+      <th>Accuracy</th>
+   </tr>
+   <tr>
+      <td>Logistic Regression</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>Random Forest</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>Support Vector Machine</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>XGBoost</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>XGBoost Random Forest</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>Linear Discriminant Analysis</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>K-Nearest Neighbors</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>Recurrent Neural Network</td>
+      <td align="center">0%</td>
+   </tr>
+</table>
 
 ## References
 
