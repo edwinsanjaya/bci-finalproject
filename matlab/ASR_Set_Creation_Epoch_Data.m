@@ -12,6 +12,9 @@ newEpochs.AllEpochs.Involuntary = permute(Epochs.AllEpochs.Involuntary, [2 1 3])
 newEpochs.AllEpochs.Involuntary(1,:,:) = [];
 newEpochs.AllEpochs.Involuntary = permute(newEpochs.AllEpochs.Involuntary, [1 3 2]);
 
+jap_blink_voluntary=blinks_data.Voluntary;
+jap_blink_involuntary=blinks_data.Involuntary;
+
 blinks_data=newEpochs.AllEpochs;
 merged_data = cat(3, blinks_data.Voluntary, blinks_data.Involuntary);
 

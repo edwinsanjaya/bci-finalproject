@@ -315,7 +315,7 @@ function [master_data_sig, master_blinks, master_interval_corrupt, blink_interva
 
     xlabel('Time (s)'); % x-axis label
     ylabel('Amplitude (uV)'); % y-axis label
-    title([data_folder,' Dataset Analysis: Blink Interval Patterns of First Subject']); % Title
+    title([data_folder,' Dataset Analysis: Blink Interval Patterns of All Subjects']); % Title
     legend('Channel FP1', 'Channel FP2');
     % Set x-axis limits
     xlim([0 max(master_data_sig(:,1))]);

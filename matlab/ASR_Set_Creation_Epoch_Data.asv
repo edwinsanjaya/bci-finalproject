@@ -12,6 +12,9 @@ newEpochs.AllEpochs.Involuntary = permute(Epochs.AllEpochs.Involuntary, [2 1 3])
 newEpochs.AllEpochs.Involuntary(1,:,:) = [];
 newEpochs.AllEpochs.Involuntary = permute(newEpochs.AllEpochs.Involuntary, [1 3 2]);
 
+jap_blink_voluntary=blinks_data.Voluntary;
+jap_blink_involuntary=blinks_data.Involuntary;
+
 blinks_data=newEpochs.AllEpochs;
 merged_data = cat(3, blinks_data.Voluntary, blinks_data.Involuntary);
 
@@ -30,24 +33,6 @@ merged_data = reshape(bandpass_merged, original_size);
 
 warning('on', 'all');
 
-
-% warning('off', 'all');
-% % Preallocate bandpass_voluntary for speed
-% bandpass_voluntary = zeros(size(blinks_data.Voluntary, 1), size(blinks_data.Voluntary, 2), size(blinks_data.Voluntary, 3));
-% 
-% % Preallocate bandpass_involuntary for speed
-% bandpass_involuntary = zeros(size(blinks_data.Involuntary, 1), size(blinks_data.Involuntary, 2), size(blinks_data.Involuntary, 3));
-% 
-% for k = 1:size(blinks_data.Voluntary, 3)
-%     bandpass_voluntary(:,:,k) = bandpass(blinks_data.Voluntary(:,:,k),[1 50], 256, ImpulseResponse="iir", Steepness=0.95);
-%     %bandpass_voluntary(:,:,k) = bandpass(blinks_data.Voluntary(:,:,k),[1 50], 256); 
-% end
-% 
-% for k = 1:size(blinks_data.Involuntary, 3)
-%     bandpass_involuntary(:,:,k) = bandpass(blinks_data.Involuntary(:,:,k),[1 50], 256, ImpulseResponse="iir", Steepness=0.95);
-% end
-% 
-% warning('on', 'all');
 
 samples=size(merged_data, 3);
 sampling_rate=256; %Sample rate of the dataset of voluntary blinking
@@ -82,7 +67,7 @@ end
 EEG_merged = pop_chanedit(EEG_merged, 'lookup','standard-10-5-cap385.elp');
 
 % Save the cleaned data as a .set file
-outputFilenameSet = 'jap_merged_data.set';
+outputFilenameSet = 'jap_bandpass_filtered_merged_data.set';
 pop_saveset(EEG_merged, 'filename', outputFilenameSet, 'filepath', '');
 
 
