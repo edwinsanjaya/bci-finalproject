@@ -308,7 +308,7 @@ Our system framework is as follow:
    interval or time-frequency features, was conducted.Out of the features extracted, the most informative ones were used to reduce the
    dimensionality of the data and improve the performance of the machine learning algorithms.
 3. Machine learning model development: the preprocessed data and selected features were used to
-   generate the supervised learning models, we use the following model to work as our classifier:
+   generate the supervised learning models, we use the following models to work as our classifier:
    - Logistic Regression
    - Random Forest
    - Support Vector Machine
@@ -317,7 +317,8 @@ Our system framework is as follow:
    - Linear Discriminant Analysis
    - K-Nearest Neighbors
    - Recurrent Neural Network
-4. Evaluation: 80% of the dataset were used as a training set to train our model, after the model is trained, the rest 20% of the dataset were used as a testing/validation set. We will apply the same procedure for each model, their performance results were to determine the most effective model to be used for our BCI system.
+4. Evaluation: 70% of the dataset were used as a training set to train our model, after the model is trained, the rest 30% of the dataset were used as a testing/validation set (15% validation and 15% testing for neural network. We will apply the same procedure for each model, their performance results were to determine the most effective model to be used for our BCI system.
+5. Fine-tuning:
 
 ![Framework](/imgs/framework.png)
 
@@ -325,7 +326,8 @@ Our system framework is as follow:
 
 _Describe the methods used to validate the effectiveness and reliability of your BCI system._
 
-Since we are working on the classifier to determine whether an eye-blink is voluntary and involuntary, we will use the accuracy as the main metrics to determine our BCI system performance
+Since we are working on the classifier to determine whether an eye-blink is voluntary and involuntary, 
+accuracy will be sufficient as the main metrics to determine our BCI system performance
 
 $$
 \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
@@ -361,6 +363,46 @@ Used software application:
 ## Results
 
 _Present a detailed comparison and analysis of your BCI system's performance against the competing methods. Include metrics such as accuracy, precision, recall, F1-score, or any other relevant evaluation metrics. Compare and contrast your BCI system with existing competing methods. Highlight the advantages and unique aspects of your system._
+
+The following table represent the accuracy of the voluntary & involuntary blink classifier by using different models:
+<table>
+   <tr>
+      <th>Model</th>
+      <th>Accuracy</th>
+   </tr>
+   <tr>
+      <td>Logistic Regression</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>Random Forest</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>Support Vector Machine</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>XGBoost</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>XGBoost Random Forest</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>Linear Discriminant Analysis</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>K-Nearest Neighbors</td>
+      <td align="center">0%</td>
+   </tr>
+   <tr>
+      <td>Recurrent Neural Network</td>
+      <td align="center">0%</td>
+   </tr>
+</table>
 
 ## References
 
