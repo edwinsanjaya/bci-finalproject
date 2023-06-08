@@ -387,38 +387,38 @@ The following table represent the accuracy of the voluntary & involuntary blink 
    </tr>
    <tr>
       <td>Logistic Regression</td>
-      <td align="center">0%</td>
-      <td align="center">0%</td>
+      <td align="center">84.55%</td>
+      <td align="center">65.44%</td>
    </tr>
    <tr>
       <td>Random Forest</td>
-      <td align="center">0%</td>
-      <td align="center">0%</td>
+      <td align="center">82.24%</td>
+      <td align="center">63.24%</td>
    </tr>
    <tr>
       <td>Support Vector Machine</td>
-      <td align="center">0%</td>
-      <td align="center">0%</td>
+      <td align="center">77.22%</td>
+      <td align="center">65.44%</td>
    </tr>
    <tr>
       <td>XGBoost</td>
-      <td align="center">0%</td>
-      <td align="center">0%</td>
+      <td align="center">85.71%</td>
+      <td align="center">64.71%</td>
    </tr>
    <tr>
       <td>XGBoost Random Forest</td>
-      <td align="center">0%</td>
-      <td align="center">0%</td>
+      <td align="center">83.78%</td>
+      <td align="center">62.50%</td>
    </tr>
    <tr>
       <td>Linear Discriminant Analysis</td>
-      <td align="center">0%</td>
-      <td align="center">0%</td>
+      <td align="center">79.92%</td>
+      <td align="center">61.76%</td>
    </tr>
    <tr>
       <td>K-Nearest Neighbors</td>
-      <td align="center">0%</td>
-      <td align="center">0%</td>
+      <td align="center">74.90%</td>
+      <td align="center">61.03%</td>
    </tr>
    <tr>
       <td>Recurrent Neural Network</td>
@@ -429,8 +429,15 @@ The following table represent the accuracy of the voluntary & involuntary blink 
 
 Based on the experiment, by having the dataset
 
-- Using only two-channel (Fp1 and Fp2) is quite challenging for the non-neural network classifier to differentiate
-  the voluntary and involuntary eye-blinking
+- By comparing the dataset, we found that the classifier accuracy when working on the Neurocomputing dataset is relatively higher
+compared to the GNAN dataset. This happened because Neurocomputing dataset provides 14 channels input while GNAN dataset
+input only has two-channel (Fp1 and Fp2). Although Fp1 and Fp2 have highest contribution in representing the eye-movement among other channels in EEG signal, 
+it is quite challenging for the non-neural network classifier to differentiate the voluntary and involuntary eye-blinking by only using two channels
+- In Neurocomputing Dataset, we found that **XGBoost** performs the best among other non-neural network classifier with the accuracy of **85.71%**
+- In GNAN dataset, we found that both **Logistic Regression and Support Vector Machine** performs the best among other non-neural network classifier 
+with the accuracy of **65.44%**
+- Overall, among the non-neural network classifier, **Logistic Regression and XGBoost** is the best candidate to be used on our BCI system
+as they performed the best in one of the dataset and second best in another 
 - However, the recurrent neural network model provides a reliable result to differentiate the voluntary and involuntary eye-blinking
 
 ## References
