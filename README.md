@@ -193,9 +193,9 @@ The EEG-VV and EEG-VR datasets consisted of involuntary eye-blinks (natural blin
 
 The dataset provide some contribution in the BCI research, some of the notable contribution are:
 
-- Blink: A Fully Automated Unsupervised Algorithm for Eye-Blink Detection in EEG Signals, Mohit Agarwal and Raghupathy Sivakumar, 57th Annual Allerton Conference on Communication, Control, and Computing, 2019[PDF](https://proceedings.allerton.csl.illinois.edu/media/files/0174.pdf)
-- Charge for a whole day: Extending Battery Life for BCI Wearables using a Lightweight Wake-Up Command,Mohit Agarwal and Raghupathy Sivakumar,CHI '20: Proceedings of the 2020 CHI Conference on Human Factors in Computing System, 2020[PDF](https://dl.acm.org/doi/pdf/10.1145/3313831.3376738)
-- Blink to Get In: Biometric Authentication for Mobile Devices using EEG Signals,Ekansh Gupta, Mohit Agarwal, and Raghupathy Sivakumar,ICC 2020 - 2020 IEEE International Conference on Communications , 2020[PDF](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9148741&tag=1)
+- Blink: A Fully Automated Unsupervised Algorithm for Eye-Blink Detection in EEG Signals, Mohit Agarwal and Raghupathy Sivakumar, 57th Annual Allerton Conference on Communication, Control, and Computing, 2019 [[PDF]](https://proceedings.allerton.csl.illinois.edu/media/files/0174.pdf)
+- Charge for a whole day: Extending Battery Life for BCI Wearables using a Lightweight Wake-Up Command,Mohit Agarwal and Raghupathy Sivakumar,CHI '20: Proceedings of the 2020 CHI Conference on Human Factors in Computing System, 2020 [[PDF]](https://dl.acm.org/doi/pdf/10.1145/3313831.3376738)
+- Blink to Get In: Biometric Authentication for Mobile Devices using EEG Signals,Ekansh Gupta, Mohit Agarwal, and Raghupathy Sivakumar,ICC 2020 - 2020 IEEE International Conference on Communications , 2020 [[PDF]](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9148741&tag=1)
 
 In addition, the authors of the papers have high credibility:
 
@@ -274,21 +274,18 @@ Upon examining the results, we can observe that applying ASR to the filtered dat
 <table>
   <tr>
     <td align="center">Raw</td>
-    <td>
-      <img src="./imgs/GNAN_dataset/01_ICA_merged_raw_data.png" alt="rew" min-width="100px" max-width="300px" height="auto"/>
-    </td>
+    <td><img src="./imgs/GNAN_dataset/01_ICA_merged_raw_data.png" alt="rew ICA" min-width="100px" max-width="300px" height="auto"/></td>
+    <td><img src="./imgs/GNAN_dataset/ERSP_01_merged_raw_data.png" alt="rew ERSP" min-width="100px" max-width="300px" height="auto"/></td>
   </tr>
   <tr>
     <td align="center">Filtered</td>
-    <td>
-      <img src="./imgs/GNAN_dataset/02_ICA_merged_bandpass.png" alt="filtered" min-width="100px" max-width="300px" height="auto"/>
-    </td>
+    <td><img src="./imgs/GNAN_dataset/02_ICA_merged_bandpass.png" alt="filtered ICA" min-width="100px" max-width="300px" height="auto"/></td>
+    <td><img src="./imgs/GNAN_dataset/ERSP_02_merged_bandpass.png" alt="filtered ERSP" min-width="100px" max-width="300px" height="auto"/></td>
   </tr>
   <tr>
     <td align="center">ASR-corrected</td>
-    <td>
-      <img src="./imgs/GNAN_dataset/03_ICA_merged_ASR.png" alt="asr-corrected" min-width="100px" max-width="300px" height="auto"/>
-    </td>
+    <td><img src="./imgs/GNAN_dataset/03_ICA_merged_ASR.png" alt="asr-corrected ICA" min-width="100px" max-width="300px" height="auto"/></td>
+    <td><img src="./imgs/GNAN_dataset/ERSP_03_merged_ASR.png" alt="asr-corrected ERSP" min-width="100px" max-width="300px" height="auto"/></td>
   </tr>
 </table>
 
@@ -304,7 +301,7 @@ model that best suited the data.
 Our system framework works as follows:
 
 1. Preprocessing of the data: we use band-pass filtering to supress the signal with frequency above 50Hz and ASR for noise-removal.
-   Having a clean EEG signal is crucial to train our model in eye-blinking classification 
+   Having a clean EEG signal is crucial to train our model in eye-blinking classification
 2. Feature engineering: the exploration of different features to be used for model training, such as peak:
    - Signal properties:
      - Statistical properties: Mean, Median, Min, Max, Range, Standard Deviation, Variance
@@ -333,7 +330,7 @@ Our system framework works as follows:
 
 _Describe the methods used to validate the effectiveness and reliability of your BCI system._
 
-Since we are working on the classifier to determine whether an eye-blink is voluntary and involuntary, 
+Since we are working on the classifier to determine whether an eye-blink is voluntary and involuntary,
 accuracy will be sufficient as the main metrics to determine our BCI system performance.
 Accuracy provides direct measure of how frequently our model is correct and easy to be understood.
 In addition, since our data are relatively balanced, accuracy will not be biased in the certain class
@@ -344,6 +341,7 @@ $$
 $$
 
 Where:
+
 - TP: True Positives: Voluntary eye-blink classified as voluntary eye-blink
 - TN: True Negatives: Involuntary eye-blink classified as involuntary eye-blink
 - FP: False Positives: Involuntary eye-blink classified as voluntary eye-blink
@@ -358,6 +356,7 @@ _Describe the usage of their BCI model's code._
 _Explain the required environment and dependencies needed to run the code. Describe any configurable options or parameters within the code._
 
 Used software application:
+
 1. Jupyter Notebook: Works as a user interface for the classifier
 2. Python v3.11: To run the python programs and libraries, mainly working on feature extraction and classification
 3. MATLAB R2023a: To pre-process the EEG signal before processed by Python
@@ -372,56 +371,66 @@ Used software application:
 
 1. Have Jupyter Notebook, Jupyter and Python installed in the local device
 2. Install the required Python dependencies from requirement.txt
-3. Run main.ipynb 
+3. Run main.ipynb
 
 ## Results
 
 _Present a detailed comparison and analysis of your BCI system's performance against the competing methods. Include metrics such as accuracy, precision, recall, F1-score, or any other relevant evaluation metrics. Compare and contrast your BCI system with existing competing methods. Highlight the advantages and unique aspects of your system._
 
 The following table represent the accuracy of the voluntary & involuntary blink classifier by using different models:
+
 <table>
    <tr>
       <th>Model</th>
-      <th>Accuracy</th>
+      <th>Accuracy Neurocomputing Dataset</th>
+      <th>Accuracy GNAN Dataset</th>
    </tr>
    <tr>
       <td>Logistic Regression</td>
+      <td align="center">0%</td>
       <td align="center">0%</td>
    </tr>
    <tr>
       <td>Random Forest</td>
       <td align="center">0%</td>
+      <td align="center">0%</td>
    </tr>
    <tr>
       <td>Support Vector Machine</td>
+      <td align="center">0%</td>
       <td align="center">0%</td>
    </tr>
    <tr>
       <td>XGBoost</td>
       <td align="center">0%</td>
+      <td align="center">0%</td>
    </tr>
    <tr>
       <td>XGBoost Random Forest</td>
+      <td align="center">0%</td>
       <td align="center">0%</td>
    </tr>
    <tr>
       <td>Linear Discriminant Analysis</td>
       <td align="center">0%</td>
+      <td align="center">0%</td>
    </tr>
    <tr>
       <td>K-Nearest Neighbors</td>
       <td align="center">0%</td>
+      <td align="center">0%</td>
    </tr>
    <tr>
       <td>Recurrent Neural Network</td>
+      <td align="center">0%</td>
       <td align="center">0%</td>
    </tr>
 </table>
 
 Based on the experiment, by having the dataset
 
-- Using only two-channel (Fp1 and Fp2) is quite challenging for the non-neural network classifier to differentiate 
-the voluntary and involuntary eye-blinking
+- Using only two-channel (Fp1 and Fp2) is quite challenging for the non-neural network classifier to differentiate
+  the voluntary and involuntary eye-blinking
 - However, the recurrent neural network model provides a reliable result to differentiate the voluntary and involuntary eye-blinking
 
 ## References
