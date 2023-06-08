@@ -424,11 +424,20 @@ The following table represent the accuracy of the voluntary & involuntary blink 
       <td align="center">61.03%</td>
    </tr>
    <tr>
-      <td>Recurrent Neural Network</td>
-      <td align="center">0%</td>
-      <td align="center">0%</td>
+      <td>Recurrent Neural Network (Signal)</td>
+      <td align="center">95.53%</td>
+      <td align="center">73.53%</td>
+   </tr>
+   <tr>
+      <td>Recurrent Neural Network (Power Spectrum Density)</td>
+      <td align="center">91.47%</td>
+      <td align="center">77.21%</td>
    </tr>
 </table>
+
+The classification performance per dataset summarized as follows:
+![Framework](/imgs/neurocomputing_acc.png)
+![Framework](/imgs/gnan_acc.png)
 
 Based on the experiment, by having the dataset
 
