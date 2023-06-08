@@ -360,9 +360,26 @@ In this project, we used the following software application:
 
 ### Configurable Options & Parameter
 
-- Changing input:
-- Changing test/training ratio:
-- Selecting model:
+#### Working with ```neuro-non-neural.ipynb``` or ```gnan-non-neural.ipynb```
+
+- Changing basic parameter: 
+  - ```channels```: adjust the channels in the EEG data
+  - ```Fs```: adjust sampling frequency of input
+  - ```eeg_band```: adjust the eeg_band used for extracting the Power Spectrum Density
+- Changing dataset input:
+  - A empty dataframe is needed
+  - Inserting the .mat data into the dataframe:
+    - Function: ```extract_data(filename, dataframe, is_voluntary)```
+    - ```filename```: the .mat file name without .mat
+    - ```dataframe```: the dataframe which will be inserted with records from .mat
+    - ```is_voluntary```: put 1 if the dataset is voluntary blinking or 0 if the dataset is involuntary blinking
+- Selecting the model:
+  - Classification function is located in ```/function/classification.py```
+  - Function: ```model_training(input_x, input_y, model, test_size=0.3)```
+    - ```input_x```: features from the EEG data
+    - ```input_y```: whether eyeblink is voluntary (value = 1) or involuntary (value = 0)
+    - ```model```: **insert your model here**
+    - ```test_size```: you can also change the test size by changing this value (default = 0.3)
 
 ### How to Execute the Code
 
@@ -445,12 +462,15 @@ Based on the experiment, by having the dataset
 compared to the GNAN dataset. This happened because Neurocomputing dataset provides 14 channels input while GNAN dataset
 input only has two-channel (Fp1 and Fp2). Although Fp1 and Fp2 have highest contribution in representing the eye-movement among other channels in EEG signal, 
 it is quite challenging for the non-neural network classifier to differentiate the voluntary and involuntary eye-blinking by only using two channels
+- Based on the results, neural network model provides superior classification in differentiating the voluntary and involuntary eye-blinking. Both of them ranked
+as the Top-2 classifier when working with our dataset.
+- By using the signal input, our Recurrent Neural Network (RNN-Signal) achieves best result with 95.53% of accuracies when working with Neurocomputing Dataset and 
+by using the power spectrum density input, the RNN-PSD achieves best result with 77.31% of accuracies when working with GNAN Dataset
 - In Neurocomputing Dataset, we found that **XGBoost** performs the best among other non-neural network classifier with the accuracy of **85.71%**
 - In GNAN dataset, we found that both **Logistic Regression and Support Vector Machine** performs the best among other non-neural network classifier 
 with the accuracy of **65.44%**
 - Overall, among the non-neural network classifier, **Logistic Regression and XGBoost** is the best candidate to be used on our BCI system
 as they performed the best in one of the dataset and second best in another 
-- However, the recurrent neural network model provides a reliable result to differentiate the voluntary and involuntary eye-blinking
 
 ## References
 
