@@ -59,7 +59,7 @@ EEG_ASR_Data.trials = size(EEG_ASR_Data.data, 3); % Number of trials
 EEG_ASR_Data.srate = sampling_rate;
 EEG_ASR_Data.times = time; %Time 
 % Set the label
-EEG_ASR_Data(1).labels = 'Second Dataset ASR Processed Data';
+EEG_ASR_Data(1).labels = 'GNAN Dataset ASR Processed Data';
 % Define the channel labels
 chan_labels = {'Fp1', 'Fp2'};
 % Assign these channel labels to your data
@@ -70,5 +70,5 @@ end
 EEG_ASR_Data = pop_chanedit(EEG_ASR_Data, 'lookup','standard-10-5-cap385.elp');
 
 % Save the cleaned data as a .set file
-outputFilenameSet = 'second_dataset_ASR_processed_data.set';
+outputFilenameSet = 'GNAN_merged_ASR.set';
 pop_saveset(EEG_ASR_Data, 'filename', outputFilenameSet, 'filepath', '');
