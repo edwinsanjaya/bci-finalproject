@@ -287,7 +287,9 @@ We performed a comparison of the number of identified ICs in the dataset obtaine
   </tr>
 </table>
 
-Upon examining the results, we can observe that applying ASR to the filtered data yields more accurate detection of independent components.
+The raw data reveals a significant increase in the eye component fidelity following the application of the bandpass filter and ASR algorithm. Specifically, the fidelity of the first component improves from 68.7% to 98.1%, while the second component shows an enhancement from 85.5% to 98.9%.
+
+In the creation of epochs for the GNAN dataset, the blink event was deliberately positioned at the 1-second mark. Subsequently, data were selected from the 1 second prior to this event, and extended to 3 seconds post-event. Upon inspection of the epoch graphs, it is clear that the data processed via the ASR method accurately emphasizes the blink behavior at the 1-second mark.
 
 <table>
   <tr>
@@ -422,8 +424,6 @@ In this project, we used the following software application:
 4. Run the whole script in the selected notebook
 
 ## Results
-
-_Present a detailed comparison and analysis of your BCI system's performance against the competing methods. Include metrics such as accuracy, precision, recall, F1-score, or any other relevant evaluation metrics. Compare and contrast your BCI system with existing competing methods. Highlight the advantages and unique aspects of your system._
 
 The following table represent the accuracy of the voluntary & involuntary blink classifier by using different models:
 
