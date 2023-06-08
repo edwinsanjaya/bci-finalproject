@@ -363,13 +363,22 @@ In this project, we used the following software application:
 
 ### Configurable Options & Parameter
 
+#### Working with `neuro-neural.ipynb` or `gnan-neural.ipynb`
+
+- Changing dataset input: change the source for `mat_invol` (involuntary dataset) and `mat_vol` (voluntary dataset)
+- Changing the ratio between training and (validation + test) dataset:
+  - Function: `train_test_split(X, y, test_size=0.7, random_state=42, shuffle=True)`
+  - Change the value of `test_size` (default = 0.7):
+- Changing the ratio between test and validation dataset
+  - Function: `train_test_split(X_temp, y_temp, test_size=0.5, random_state=42, shuffle=True)`
+  - Change the value of `test_size` (default = 0.5)
+- Changing the number of epoch and batch used in RNN training:
+  - Function: `model.fit(X_train, y_train, epochs=50, batch_size=16, validation_data=(X_val, y_val))`
+  - Change the value of `epoch` and `batch_size`
+
 #### Working with `neuro-non-neural.ipynb` or `gnan-non-neural.ipynb`
 
-- Changing basic parameter:
-  - `channels`: adjust the channels in the EEG data
-  - `Fs`: adjust sampling frequency of input
-  - `eeg_band`: adjust the eeg_band used for extracting the Power Spectrum Density
-- Changing dataset input:
+- Changing dataset input: 
   - A empty dataframe is needed
   - Inserting the .mat data into the dataframe:
     - Function: `extract_data(filename, dataframe, is_voluntary)`
