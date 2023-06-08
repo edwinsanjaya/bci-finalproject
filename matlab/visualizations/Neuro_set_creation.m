@@ -57,7 +57,7 @@ end
 EEG_merged = pop_chanedit(EEG_merged, 'lookup','standard-10-5-cap385.elp');
 
 % Save the cleaned data as a .set file
-outputFilenameSet = 'jap_merged_data.set';
+outputFilenameSet = 'Neuro_merged_data.set';
 pop_saveset(EEG_merged, 'filename', outputFilenameSet, 'filepath', '');
 
 

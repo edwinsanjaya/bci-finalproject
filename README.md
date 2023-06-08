@@ -275,17 +275,17 @@ Upon examining the results, we can observe that applying ASR to the filtered dat
   <tr>
     <td align="center">Raw</td>
     <td><img src="./imgs/GNAN_dataset/01_ICA_merged_raw_data.png" alt="rew ICA" min-width="100px" max-width="300px" height="auto"/></td>
-    <td><img src="./imgs/GNAN_dataset/ERSP_01_merged_raw_data.png" alt="rew ERSP" min-width="100px" max-width="300px" height="auto"/></td>
+    <td><img src="./imgs/GNAN_dataset/TF_01_merged_raw_data.png" alt="rew ERSP" min-width="100px" max-width="300px" height="auto"/></td>
   </tr>
   <tr>
     <td align="center">Filtered</td>
     <td><img src="./imgs/GNAN_dataset/02_ICA_merged_bandpass.png" alt="filtered ICA" min-width="100px" max-width="300px" height="auto"/></td>
-    <td><img src="./imgs/GNAN_dataset/ERSP_02_merged_bandpass.png" alt="filtered ERSP" min-width="100px" max-width="300px" height="auto"/></td>
+    <td><img src="./imgs/GNAN_dataset/TF_02_merged_bandpass.png" alt="filtered ERSP" min-width="100px" max-width="300px" height="auto"/></td>
   </tr>
   <tr>
     <td align="center">ASR-corrected</td>
     <td><img src="./imgs/GNAN_dataset/03_ICA_merged_ASR.png" alt="asr-corrected ICA" min-width="100px" max-width="300px" height="auto"/></td>
-    <td><img src="./imgs/GNAN_dataset/ERSP_03_merged_ASR.png" alt="asr-corrected ERSP" min-width="100px" max-width="300px" height="auto"/></td>
+    <td><img src="./imgs/GNAN_dataset/TF_03_merged_ASR.png" alt="asr-corrected ERSP" min-width="100px" max-width="300px" height="auto"/></td>
   </tr>
 </table>
 
@@ -354,6 +354,7 @@ _Describe the usage of their BCI model's code._
 _Explain the required environment and dependencies needed to run the code. Describe any configurable options or parameters within the code._
 
 In this project, we used the following software application:
+
 1. Jupyter Notebook: Works as a user interface for the classifier
 2. Python v3.11: To run the python programs and libraries, mainly working on feature extraction and classification
 3. MATLAB R2023a: To pre-process the EEG signal before processed by Python
@@ -385,12 +386,12 @@ In this project, we used the following software application:
 
 1. Have Jupyter Notebook, Jupyter and Python installed in the local device
 2. Select the notebook based on the selection of dataset & type of classifier:
-    - ```neuro-neural.ipynb```: Neurocomputing dataset with neural network classifier
-    - ```neuro-non-neural.ipynb```: Neurocomputing dataset with non-neural network classifier
-    - ```gnan-neural.ipynb```: GNAN dataset with neural network classifier
-    - ```gnan-non-neural.ipynb```: GNAN dataset with non-neural network classifier
+   - `neuro-neural.ipynb`: Neurocomputing dataset with neural network classifier
+   - `neuro-non-neural.ipynb`: Neurocomputing dataset with non-neural network classifier
+   - `gnan-neural.ipynb`: GNAN dataset with neural network classifier
+   - `gnan-non-neural.ipynb`: GNAN dataset with non-neural network classifier
 3. Resolve the dependencies/library listed in the beginning part of the notebook
-    - Our environment library also listed in ```requirement.txt```
+   - Our environment library also listed in `requirement.txt`
 4. Run the whole script in the selected notebook
 
 ## Results
@@ -459,18 +460,18 @@ The classification performance per dataset summarized as follows:
 Based on the experiment, by having the dataset
 
 - By comparing the dataset, we found that the classifier accuracy when working on the Neurocomputing dataset is relatively higher
-compared to the GNAN dataset. This happened because Neurocomputing dataset provides 14 channels input while GNAN dataset
-input only has two-channel (Fp1 and Fp2). Although Fp1 and Fp2 have highest contribution in representing the eye-movement among other channels in EEG signal, 
-it is quite challenging for the non-neural network classifier to differentiate the voluntary and involuntary eye-blinking by only using two channels
+  compared to the GNAN dataset. This happened because Neurocomputing dataset provides 14 channels input while GNAN dataset
+  input only has two-channel (Fp1 and Fp2). Although Fp1 and Fp2 have highest contribution in representing the eye-movement among other channels in EEG signal,
+  it is quite challenging for the non-neural network classifier to differentiate the voluntary and involuntary eye-blinking by only using two channels
 - Based on the results, neural network model provides superior classification in differentiating the voluntary and involuntary eye-blinking. Both of them ranked
 as the Top-2 classifier when working with our dataset.
-- By using the signal input, our Recurrent Neural Network (RNN-Signal) achieves best result with 95.53% of accuracies when working with Neurocomputing Dataset and 
-by using the power spectrum density input, the RNN-PSD achieves best result with 77.31% of accuracies when working with GNAN Dataset
+- By using the signal input, our Recurrent Neural Network (RNN-Signal) achieves best result with 95.53% of accuracies when working with Neurocomputing Dataset and
+  by using the power spectrum density input, the RNN-PSD achieves best result with 77.31% of accuracies when working with GNAN Dataset
 - In Neurocomputing Dataset, we found that **XGBoost** performs the best among other non-neural network classifier with the accuracy of **85.71%**
-- In GNAN dataset, we found that both **Logistic Regression and Support Vector Machine** performs the best among other non-neural network classifier 
-with the accuracy of **65.44%**
+- In GNAN dataset, we found that both **Logistic Regression and Support Vector Machine** performs the best among other non-neural network classifier
+  with the accuracy of **65.44%**
 - Overall, among the non-neural network classifier, **Logistic Regression and XGBoost** is the best candidate to be used on our BCI system
-as they performed the best in one of the dataset and second best in another 
+  as they performed the best in one of the dataset and second best in another 
 
 ## References
 
