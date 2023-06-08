@@ -307,7 +307,6 @@ Our system framework works as follows:
      - Statistical properties: Mean, Median, Min, Max, Range, Standard Deviation, Variance
      - Kurtosis
      - Skew
-     - Entropy
    - Power spectral density
      - Check for different properties in each frequency bands (Delta, Theta, Alpha, Beta, Gamma)
      - Statistical properties: Mean, Min, Max, Range
@@ -321,8 +320,7 @@ Our system framework works as follows:
    - Linear Discriminant Analysis
    - K-Nearest Neighbors
    - Recurrent Neural Network
-4. Evaluation: 70% of the dataset were used as a training set to train our model, after the model is trained, the rest 30% of the dataset were used as a testing/validation set (15% validation and 15% testing for neural network. We will apply the same procedure for each model, their performance results were to determine the most effective model to be used for our BCI system.
-5. Fine-tuning:
+4. Evaluation: 70% of the dataset were used as a training set to train our model, after the model is trained, the rest 30% of the dataset were used as a testing/validation set (15% validation and 15% testing for neural network). We will apply the same procedure for each model, their performance results were to determine the most effective model to be used for our BCI system.
 
 ![Framework](/imgs/framework_new.png)
 
@@ -334,7 +332,7 @@ Since we are working on the classifier to determine whether an eye-blink is volu
 accuracy will be sufficient as the main metrics to determine our BCI system performance.
 Accuracy provides direct measure of how frequently our model is correct and easy to be understood.
 In addition, since our data are relatively balanced, accuracy will not be biased in the certain class
-and won't require us to complicate our evaluation by using other metrics such as precision, recall and F1-score
+and won't require us to use metrics such as precision, recall and F1-score to reduce the evaluation complexity.
 
 $$
 \text{Accuracy} = \frac{\text{TP} + \text{TN}}{\text{TP} + \text{TN} + \text{FP} + \text{FN}}
