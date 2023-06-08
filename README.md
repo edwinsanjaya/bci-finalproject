@@ -170,22 +170,24 @@ The EEG-VV and EEG-VR datasets consisted of involuntary eye-blinks (natural blin
 
 <table>
   <tr>
-    <td align="center">EEG-IO Blink interval patterns</td>
-    <td>
-      <img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-IO.png" alt="GNAN raw data visualization IO" min-width="100px" max-width="300px" height="auto">
-    </td>
+    <td align="center"></td>
+    <td align="center">corrupt data with blink interval patterns</td>
+    <td align="center">corrupt data without blink interval patterns</td>
   </tr>
   <tr>
-    <td align="center">EEG-VR Blink interval patterns</td>
-    <td>
-      <img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-VR.png" alt="GNAN raw data visualization VR" min-width="100px" max-width="300px" height="auto">
-    </td>
+    <td align="center">EEG-IO</td>
+    <td><img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-IO.png" alt="GNAN raw data visualization IO" min-width="100px" max-width="300px" height="auto"></td>
+    <td><img src="./imgs/GNAN_dataset/Raw_Corrupt_All_Subjects_EEG-IO.png" alt="GNAN raw data visualization IO" min-width="100px" max-width="300px" height="auto"></td>
   </tr>
   <tr>
-    <td align="center">EEG-VV Blink interval patterns</td>
-    <td>
-      <img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-VV.png" alt="GNAN raw data visualization VV" min-width="100px" max-width="300px" height="auto">
-    </td>
+    <td align="center">EEG-VR</td>
+    <td><img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-VR.png" alt="GNAN raw data visualization VR" min-width="100px" max-width="300px" height="auto"></td>
+    <td><img src="./imgs/GNAN_dataset/Raw_Corrupt_All_Subjects_EEG-VR.png" alt="GNAN raw data visualization VR" min-width="100px" max-width="300px" height="auto"></td>
+  </tr>
+  <tr>
+    <td align="center">EEG-VV</td>
+    <td><img src="./imgs/GNAN_dataset/Raw_All_Subjects_EEG-VV.png" alt="GNAN raw data visualization VV" min-width="100px" max-width="300px" height="auto"></td>
+    <td><img src="./imgs/GNAN_dataset/Raw_Corrupt_All_Subjects_EEG-VV.png" alt="GNAN raw data visualization VV" min-width="100px" max-width="300px" height="auto"></td>
   </tr>
 </table>
 
@@ -361,26 +363,26 @@ In this project, we used the following software application:
 
 ### Configurable Options & Parameter
 
-#### Working with ```neuro-non-neural.ipynb``` or ```gnan-non-neural.ipynb```
+#### Working with `neuro-non-neural.ipynb` or `gnan-non-neural.ipynb`
 
-- Changing basic parameter: 
-  - ```channels```: adjust the channels in the EEG data
-  - ```Fs```: adjust sampling frequency of input
-  - ```eeg_band```: adjust the eeg_band used for extracting the Power Spectrum Density
+- Changing basic parameter:
+  - `channels`: adjust the channels in the EEG data
+  - `Fs`: adjust sampling frequency of input
+  - `eeg_band`: adjust the eeg_band used for extracting the Power Spectrum Density
 - Changing dataset input:
   - A empty dataframe is needed
   - Inserting the .mat data into the dataframe:
-    - Function: ```extract_data(filename, dataframe, is_voluntary)```
-    - ```filename```: the .mat file name without .mat
-    - ```dataframe```: the dataframe which will be inserted with records from .mat
-    - ```is_voluntary```: put 1 if the dataset is voluntary blinking or 0 if the dataset is involuntary blinking
+    - Function: `extract_data(filename, dataframe, is_voluntary)`
+    - `filename`: the .mat file name without .mat
+    - `dataframe`: the dataframe which will be inserted with records from .mat
+    - `is_voluntary`: put 1 if the dataset is voluntary blinking or 0 if the dataset is involuntary blinking
 - Selecting the model:
-  - Classification function is located in ```/function/classification.py```
-  - Function: ```model_training(input_x, input_y, model, test_size=0.3)```
-    - ```input_x```: features from the EEG data
-    - ```input_y```: whether eyeblink is voluntary (value = 1) or involuntary (value = 0)
-    - ```model```: **insert your model here**
-    - ```test_size```: you can also change the test size by changing this value (default = 0.3)
+  - Classification function is located in `/function/classification.py`
+  - Function: `model_training(input_x, input_y, model, test_size=0.3)`
+    - `input_x`: features from the EEG data
+    - `input_y`: whether eyeblink is voluntary (value = 1) or involuntary (value = 0)
+    - `model`: **insert your model here**
+    - `test_size`: you can also change the test size by changing this value (default = 0.3)
 
 ### How to Execute the Code
 
@@ -457,21 +459,17 @@ The classification performance per dataset summarized as follows:
 ![Framework](/imgs/neurocomputing_acc.png)
 ![Framework](/imgs/gnan_acc.png)
 
-Based on the experiment, by having the dataset
+Based on the results of our experiments, we have drawn the following conclusions:
 
-- By comparing the dataset, we found that the classifier accuracy when working on the Neurocomputing dataset is relatively higher
-  compared to the GNAN dataset. This happened because Neurocomputing dataset provides 14 channels input while GNAN dataset
-  input only has two-channel (Fp1 and Fp2). Although Fp1 and Fp2 have highest contribution in representing the eye-movement among other channels in EEG signal,
-  it is quite challenging for the non-neural network classifier to differentiate the voluntary and involuntary eye-blinking by only using two channels
-- Based on the results, neural network model provides superior classification in differentiating the voluntary and involuntary eye-blinking. Both of them ranked
-as the Top-2 classifier when working with our dataset.
-- By using the signal input, our Recurrent Neural Network (RNN-Signal) achieves best result with 95.53% of accuracies when working with Neurocomputing Dataset and
-  by using the power spectrum density input, the RNN-PSD achieves best result with 77.31% of accuracies when working with GNAN Dataset
-- In Neurocomputing Dataset, we found that **XGBoost** performs the best among other non-neural network classifier with the accuracy of **85.71%**
-- In GNAN dataset, we found that both **Logistic Regression and Support Vector Machine** performs the best among other non-neural network classifier
-  with the accuracy of **65.44%**
-- Overall, among the non-neural network classifier, **Logistic Regression and XGBoost** is the best candidate to be used on our BCI system
-  as they performed the best in one of the dataset and second best in another 
+- The classifier accuracy is relatively higher when working with the Neurocomputing dataset compared to the GNAN dataset. This difference can be attributed to the number of input channels. The Neurocomputing dataset provides 14 channels, while the GNAN dataset has only two channels (Fp1 and Fp2). Although Fp1 and Fp2 play a crucial role in representing eye movements in EEG signals, using only two channels poses a challenge for non-neural network classifiers to differentiate voluntary and involuntary eye-blinking accurately.
+
+- Based on the results, neural network models exhibit superior classification performance in differentiating voluntary and involuntary eye-blinking. Both neural network models ranked among the top classifiers when working with our dataset.
+
+- Our Recurrent Neural Network (RNN-Signal) achieved the best result with an accuracy of 95.53% when working with the Neurocomputing dataset, using signal input. On the other hand, the RNN-PSD achieved the best result with an accuracy of 77.31% when working with the GNAN dataset, using power spectrum density input.
+
+- Among the non-neural network classifiers, **XGBoost** performed the best in the Neurocomputing dataset with an accuracy of **85.71%**. In the GNAN dataset, both **Logistic Regression and Support Vector Machine (SVM)** outperformed other classifiers with an accuracy of **65.44%**.
+
+- Considering the performance of non-neural network classifiers, **Logistic Regression and XGBoost** emerge as the top candidates for our BCI system. Logistic Regression performed the best in the GNAN dataset, and XGBoost achieved the highest accuracy in the Neurocomputing dataset. These classifiers demonstrate promising performance and can be effectively utilized in our BCI system.
 
 ## References
 
