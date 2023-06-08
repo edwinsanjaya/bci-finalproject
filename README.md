@@ -143,7 +143,7 @@ We compared the number of identified ICs in the dataset obtained from the "raw" 
   </tr>
 </table>
 
-Upon examining the results, we can observe that applying ASR to the filtered data yields less accurate detection of independent components, with some components being categorized as "others," which is not ideal. This can be attributed to the ASR algorithm and its impact on the data. The ASR correction process has the potential to remove or weaken EEG components associated with eye activities or other artifacts, as well as alter the spatial distribution and temporal characteristics of the remaining ICs. Consequently, this leads to a decrease in the number of identified ICs related to these artifacts. Its objective is to eliminate artifacts and optimize the signal-to-noise ratio, resulting in changes to the ICs' amplitude, shape, and timing. Since the dataset provided by the authors had been pre-processed, these ARS related alterations can potentially negatively affect the interpretation and identification of the ICs.
+Upon examining the results, we can observe that applying ASR to the filtered data yields less accurate detection of independent components, with some components being categorized as "others," which is not ideal. This can be attributed to the ASR algorithm and its impact on the data. The ASR correction process has the potential to remove or weaken EEG components associated with eye activities or other artifacts, as well as alter the spatial distribution and temporal characteristics of the remaining ICs. Consequently, this leads to a decrease in the number of identified ICs related to these artifacts. Its objective is to eliminate artifacts and optimize the signal-to-noise ratio, resulting in changes to the ICs' amplitude, shape, and timing. Since the dataset provided by the authors had been pre-processed, these ASR related alterations can potentially negatively affect the interpretation and identification of the ICs.
 
 <table>
   <tr>
@@ -168,11 +168,13 @@ A public dataset comprising three different groups of eye-blink related data, EE
 
 The EEG-VV and EEG-VR datasets consisted of involuntary eye-blinks (natural blinks) recorded from the frontal electrodes (Fp1, Fp2) for 12 subjects using OpenBCI Device and BIOPAC Cap100C. The subjects performed two activities: watching a video (EEG-VV) and reading an article (EEG-VR). The eye-blinks in these datasets were also manually annotated using a video feed.
 
+A thorough analysis of the extracted data from all subjects reveals significant irregularities across the spectrum of signals. Color-coding is employed to distinguish among the different elements: green lines denote distinct blink types, encompassing both voluntary and involuntary; black lines represent 'soft' blinks, defined by the researchers as potential half-blinks; and red intervals highlight corrupted data identified in the signal.
+
 <table>
   <tr>
     <td align="center"></td>
-    <td align="center">corrupt data with blink interval patterns</td>
-    <td align="center">corrupt data without blink interval patterns</td>
+    <td align="center">raw & corrupt data with blink interval patterns</td>
+    <td align="center">raw & corrupt  data without blink interval patterns</td>
   </tr>
   <tr>
     <td align="center">EEG-IO</td>
@@ -190,6 +192,20 @@ The EEG-VV and EEG-VR datasets consisted of involuntary eye-blinks (natural blin
     <td><img src="./imgs/GNAN_dataset/Raw_Corrupt_All_Subjects_EEG-VV.png" alt="GNAN raw data visualization VV" min-width="100px" max-width="300px" height="auto"></td>
   </tr>
 </table>
+
+After examining the initial dataset and identifying corrupted intervals, we narrowed down our analysis to focus on valid data. Our objective was to determine the optimal interval size for obtaining accurate results. We experimented with different interval lengths and ultimately selected a 4-second interval. This choice not only yielded better outcomes but was also consistent with the interval size recommended in the original paper. The specifics of our analysis are illustrated in the following graph.
+<br>
+
+|      Blink Events (IO+VR+VV)      | Amount of Blinks | Percentage in the Dataset |
+| :-------------------------------: | :--------------: | :-----------------------: |
+|           Total Blinks            |       2035       |           100%            |
+| Blink Event Interval of 2 seconds |       1526       |            75%            |
+| Blink Event Interval of 3 seconds |       1169       |            57%            |
+| Blink Event Interval of 4 seconds |       907        |            45%            |
+| Blink Event Interval of 5 seconds |       568        |            28%            |
+
+<img src="./imgs/GNAN_dataset/GNAN_used_data.png" alt="GNAN raw data visualization VV" min-width="100px" max-width="300px" height="auto">
+<br>
 
 #### Quality Evaluation: literature survey and analysis
 
@@ -378,7 +394,7 @@ In this project, we used the following software application:
 
 #### Working with `neuro-non-neural.ipynb` or `gnan-non-neural.ipynb`
 
-- Changing dataset input: 
+- Changing dataset input:
   - A empty dataframe is needed
   - Inserting the .mat data into the dataframe:
     - Function: `extract_data(filename, dataframe, is_voluntary)`
