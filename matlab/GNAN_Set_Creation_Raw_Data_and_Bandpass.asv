@@ -272,9 +272,10 @@ end
 
 
 
-%Function to extract the data out of each folder and from each subject in the dataset
+%Function to extract the 
 function [master_data_sig, master_blinks, master_interval_corrupt, blink_intervals, min_blink_interval] = process_data(data_folder)
-    % Sampling frequency for the GNAN Dataset
+
+    % Parameters
     fs = 250.0;
 
     % Reading data files
@@ -285,13 +286,14 @@ function [master_data_sig, master_blinks, master_interval_corrupt, blink_interva
     master_blinks = [];
     master_interval_corrupt = [];
     previous_end_time = 0;
-    %Iterating through files in the folder
+
     for file_idx = 1:numel(list_of_files)
         file_sig = list_of_files{file_idx};
 
+        % Determine file_stim based on file_sig
         file_stim = replace(file_sig, '_data', '_labels');
 
-        % Obtaining blinks and corrupt data interval 
+        % Function to read stimulations
         interval_corrupt = [];
         blinks = [];
         n_corrupt = 0;
@@ -317,11 +319,12 @@ function [master_data_sig, master_blinks, master_interval_corrupt, blink_interva
                     disp("Error in parsing")
                 end
             else
+                % after the "blinks" line, each row with two numbers should be added to `blinks`
                 blinks = [blinks; str2double(C{1}(idx))+previous_end_time, C{2}(idx)];
             end
-            idx = idx + 1;
+            idx = idx + 1;  % Increment index at each loop iteration
         end
-        % Loading data for each channel
+        % Loading data
         if strcmp(data_folder, 'EEG-IO')
             data_sig = dlmread(fullfile(data_folder, file_sig),';',1,0);
             data_sig(:,1) = data_sig(:,1) + previous_end_time;
@@ -331,7 +334,7 @@ function [master_data_sig, master_blinks, master_interval_corrupt, blink_interva
             data_sig = data_sig(:,1:3);
             data_sig(:,1) = ((0:length(data_sig)-1)'/fs) + previous_end_time;
         end
-        %The data is appended for one general variable, this is done with each subject 
+
         master_data_sig = [master_data_sig; data_sig];
         master_blinks = [master_blinks; blinks];
         master_interval_corrupt = [master_interval_corrupt; interval_corrupt];
@@ -350,22 +353,19 @@ function [master_data_sig, master_blinks, master_interval_corrupt, blink_interva
     plot(master_data_sig(:,1), master_data_sig(:,2)); % FP1
     hold on;
     plot(master_data_sig(:,1), master_data_sig(:,3)); % FP2
-    
-    %Visualizing the corrupt interval in red
+
     for i = 1:size(master_interval_corrupt,1)
         x = [master_interval_corrupt(i,1) master_interval_corrupt(i,2)];
         y = get(gca, 'YLim');
         patch([x fliplr(x)], [y(1) y(1) y(2) y(2)], 'red', 'FaceAlpha', 0.5, 'EdgeColor', 'none');
     end
-
-    %Visualizing the blinks (induced and normal) in green and soft blinks in black
-    for d = 1:size(master_blinks,1)
-        if master_blinks(d,2) < 2
-            xline(master_blinks(d,1),'Color','green');
-        elseif master_blinks(d,2) == 2
-            xline(master_blinks(d,1),'Color','black');
-        end
-    end
+%     for d = 1:size(master_blinks,1)
+%         if master_blinks(d,2) < 2
+%             xline(master_blinks(d,1),'Color','green');
+%         elseif master_blinks(d,2) == 2
+%             xline(master_blinks(d,1),'Color','black');
+%         end
+%     end
 
     xlabel('Time (s)'); % x-axis label
     ylabel('Amplitude (uV)'); % y-axis label
