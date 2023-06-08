@@ -465,8 +465,25 @@ The following table represent the accuracy of the voluntary & involuntary blink 
 </table>
 
 The classification performance per dataset summarized as follows:
-![Framework](/imgs/neurocomputing_acc.png)
-![Framework](/imgs/gnan_acc.png)
+![Neurocomputing Accuracy](/imgs/neurocomputing_acc.png)
+![GNAN Accuracy](/imgs/gnan_acc.png)
+
+The confusion matrix for the best classifier in each dataset are as follow:
+
+<table>
+<tr>
+<th>Best for Neurocomputing Dataset<br> RNN-Signal</th>
+<th>Best for GNAN Dataset<br> RNN-PSD</th>
+</tr>
+<tr>
+<td style="width:50%">
+<img src="imgs/rnn_signal_neuro_cf.png">
+</td>
+<td style="width:50%">
+<img src="imgs/rnn_psd_gnan_cf.png">
+</td>
+</tr>
+</table>
 
 Based on the results of our experiments, we have drawn the following conclusions:
 
