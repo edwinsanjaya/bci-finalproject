@@ -32,7 +32,7 @@ This project focuses on leveraging the brain-computer interface technology to de
 
 ## Demo Video
 
-https://github.com/edwinsanjaya/bci-finalproject/blob/main/Video_Demo.mp4
+https://github.com/edwinsanjaya/bci-finalproject/assets/114909322/1dd8aa9c-9abb-4453-b25e-55b385af4b26
 
 ## Dataset
 
