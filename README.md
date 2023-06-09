@@ -311,7 +311,7 @@ In the creation of epochs for the GNAN dataset, the blink event was deliberately
 
 ## Model Framework
 
-_Outline the architecture and components of your BCI system. This includes the input/output mechanisms, signal preprocessing techniques, data segmentation methods, artifact removal strategies, feature extraction approaches, machine learning models utilized, and any other relevant components._
+_This section outlines the architecture and components of our BCI system. This includes the input/output mechanisms, signal preprocessing techniques, data segmentation methods, artifact removal strategies, feature extraction approaches, machine learning models utilized, and any other relevant components._
 
 Taking into account that the dataset has already been labeled, supervised learning was used to
 create a model that can classify voluntary and involuntary blinking. We explored various
@@ -346,7 +346,7 @@ Our system framework works as follows:
 
 ## Validation
 
-_Describe the methods used to validate the effectiveness and reliability of your BCI system._
+_This section describes the methods used to validate the effectiveness and reliability of your BCI system._
 
 Since we are working on the classifier to determine whether an eye-blink is voluntary and involuntary,
 accuracy will be sufficient as the main metrics to determine our BCI system performance.
@@ -367,11 +367,12 @@ Where:
 
 ## Usage
 
-_Describe the usage of their BCI model's code._
+_This section will describe the usage of our BCI model's code, including:_
+- _Required environment and dependencies needed to run the code_
+- _Configurable options or parameters within the code._
+- _How to run the code_
 
 ### Environment & Dependencies
-
-_Explain the required environment and dependencies needed to run the code. Describe any configurable options or parameters within the code._
 
 In this project, we used the following software application:
 
@@ -420,8 +421,11 @@ In this project, we used the following software application:
    - `gnan-neural.ipynb`: GNAN dataset with neural network classifier
    - `gnan-non-neural.ipynb`: GNAN dataset with non-neural network classifier
 3. Resolve the dependencies/library listed in the beginning part of the notebook
-   - Our environment library also listed in `requirement.txt`
+   - Need to resolve the depedencies from `/function/classificaion.py`
+   - Our environment library also listed in `requirements.txt`
 4. Run the whole script in the selected notebook
+   - Note: We have run our experiment in each notebook, so experiment result can also be seen
+   without running the notebook
 
 ## Results
 
@@ -505,13 +509,36 @@ Based on the results of our experiments, we have drawn the following conclusions
 
 - The classifier accuracy is relatively higher when working with the Neurocomputing dataset compared to the GNAN dataset. This difference can be attributed to the number of input channels. The Neurocomputing dataset provides 14 channels, while the GNAN dataset has only two channels (Fp1 and Fp2). Although Fp1 and Fp2 play a crucial role in representing eye movements in EEG signals, using only two channels poses a challenge for non-neural network classifiers to differentiate voluntary and involuntary eye-blinking accurately.
 
-- Based on the results, neural network models exhibit superior classification performance in differentiating voluntary and involuntary eye-blinking. Both neural network models ranked among the top classifiers when working with our dataset.
+- Based on the results, **neural network models exhibit superior classification performance** in differentiating voluntary and involuntary eye-blinking. **Both neural network models ranked among the top classifiers** when working with our dataset.
 
-- Our Recurrent Neural Network (RNN-Signal) achieved the best result with an accuracy of 95.53% when working with the Neurocomputing dataset, using signal input. On the other hand, the RNN-PSD achieved the best result with an accuracy of 77.31% when working with the GNAN dataset, using power spectrum density input.
+- Our **Recurrent Neural Network (RNN-Signal)** achieved the best result with an accuracy of **95.53%** when working with the Neurocomputing dataset, using signal input. On the other hand, the **RNN-PSD** achieved the best result with an accuracy of **77.31%** when working with the GNAN dataset, using power spectrum density input.
 
 - Among the non-neural network classifiers, **XGBoost** performed the best in the Neurocomputing dataset with an accuracy of **85.71%**. In the GNAN dataset, both **Logistic Regression and Support Vector Machine (SVM)** outperformed other classifiers with an accuracy of **65.44%**.
 
 - Considering the performance of non-neural network classifiers, **Logistic Regression and XGBoost** emerge as the top candidates for our BCI system. Logistic Regression performed the best in the GNAN dataset, and XGBoost achieved the highest accuracy in the Neurocomputing dataset. These classifiers demonstrate promising performance and can be effectively utilized in our BCI system.
+
+Uniqueness in our BCI system:
+
+- Our BCI system is specialized to differentiating the voluntary and involuntary eye-blink. Which can be considered as a
+challenging task, since both voluntary and involuntary eye-blink characteristic share very similar characteristic
+
+- In most experiment, an EOG signal is commonly used to do the eye-activity based classifier since it measure the eye-movement activity. 
+However, in this experiment we exclude the EOG signal and only consider the EEG signals in 14 channels as the feature for our classifier 
+(since we want to develop a BCI system utilize EEG signals as the inputs)
+
+- Our BCI system utilizes both non-neural network and neural network classifier. Allowing user to have options to
+select the classifier based on their needs:
+    - Logistic Regression & XGBoost: is recommended for those who favor the fast model training at cost of lower classification accuracy
+    - RNN-Signal and RNN-PSD: is recommended for more accurate classification at cost of more time required for model training
+
+- Our BCI system can run the classification within different datasets, as long as the input in each dataset is consistent in each batch.
+  However its important to note that the accuracy of our classifier depends on the quality of the data
+
+Future works & suggestion
+
+- Explore more EEG features & apply better feature selection
+- Explore more options for neural-network classifier such as Convolutional Neural Network and Transformers
+- Explore more available eye-blinking dataset to improve the model training
 
 ## References
 
