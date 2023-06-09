@@ -557,4 +557,4 @@ We also want to express our deepest gratitude to the author of the research that
 - Kanoga, S., Nakanishi, M., & Mitsukura, Y. (2016) for the Neurocomputing Dataset
 - Agarwal, Mohit & Sivakumar, Raghupathy. (2019) for the GNAN Dataset
 
-Their valuable research helps us to make the realization our voluntary/involuntary BCI system to be possible.
+Their valuable research helps us to make the realization our BCI system for voluntary/involuntary eye-blinking classifier to be possible.
