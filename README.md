@@ -546,3 +546,15 @@ Future works & suggestion
 2. Agarwal, Mohit & Sivakumar, Raghupathy. (2019). Blink: A Fully Automated Unsupervised Algorithm for Eye-Blink Detection in EEG Signals. 1113-1121. 10.1109/ALLERTON.2019.8919795. [https://doi.org/10.1109/ALLERTON.2019.8919795](https://doi.org/10.1109/ALLERTON.2019.8919795)
 3. Agarwal, Mohit & Sivakumar, R.. (2020). Charge for a whole day: Extending Battery Life for BCI Wearables using a Lightweight Wake-Up Command. 1-14. 10.1145/3313831.3376738.
 4. Gupta, Ekansh & Agarwal, Mohit & Sivakumar, R.. (2020). Blink to Get In: Biometric Authentication for Mobile Devices using EEG Signals. 1-6. 10.1109/ICC40277.2020.9148741.
+
+## Acknowledgement
+
+We want to express our deepest gratitude to Professor Chun-Hsiang Chuang from National Tsing Hua University, Taiwan who taught us
+in Brain Computer Interfaces: Fundamentals and Application course and provide us with his teaching, guidance and continuous motivation for us
+to work on this final project
+
+We also want to express our deepest gratitude to the author of the research that we referenced for dataset to work on our research:
+- Kanoga, S., Nakanishi, M., & Mitsukura, Y. (2016) for the Neurocomputing Dataset
+- Agarwal, Mohit & Sivakumar, Raghupathy. (2019) for the GNAN Dataset
+
+Their valuable research helps us to make the realization our voluntary/involuntary BCI system to be possible.
